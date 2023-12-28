@@ -1,5 +1,7 @@
 import PageAnimatePresence from '@/components/HOC/page-animate-presence';
+import { ModeToggle } from '@/components/mode-toggle';
 import { NavTabs } from '@/components/nav-tabs';
+import { ThemeProvider } from '@/components/theme-provider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -15,14 +17,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="min-h-screen flex flex-col">
-          <header className="flex justify-center p-4">
-            <NavTabs />
-          </header>
-          <main className="grow p-4 flex justify-center items-center">
-            <PageAnimatePresence>{children}</PageAnimatePresence>
-          </main>
-        </div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="min-h-screen flex flex-col">
+            <header className="flex justify-center p-4 space-x-3">
+              <NavTabs />
+              <ModeToggle />
+            </header>
+            <main className="grow p-4 flex justify-center items-center">
+              <PageAnimatePresence>{children}</PageAnimatePresence>
+            </main>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

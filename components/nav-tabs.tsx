@@ -18,15 +18,15 @@ export function NavTabs() {
   const pathname = usePathname();
 
   return (
-    <div className="flex space-x-1">
+    <div className="flex space-x-4 items-center">
       {tabs.map((tab) => (
         <Link
           href={tab.href}
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
           className={`${
-            activeTab === tab.id ? '' : 'hover:text-white/60'
-          } relative rounded-full px-3 py-1.5 text-sm font-medium text-white outline-sky-400 transition focus-visible:outline-2`}
+            activeTab === tab.id ? '' : 'hover:underline'
+          } relative rounded-full px-3 py-1.5 text-sm text-foreground font-medium outline-sky-400 transition focus-visible:outline-2`}
           style={{
             WebkitTapHighlightColor: 'transparent',
           }}
@@ -34,7 +34,7 @@ export function NavTabs() {
           {pathname === tab.href && (
             <motion.span
               layoutId="bubble"
-              className="absolute inset-0 z-10 bg-white mix-blend-difference"
+              className="absolute inset-0 z-10 bg-primary mix-blend-color-burn dark:mix-blend-difference"
               style={{ borderRadius: 9999 }}
               transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
             />
@@ -45,3 +45,5 @@ export function NavTabs() {
     </div>
   );
 }
+
+// mix-blend-color-burn
