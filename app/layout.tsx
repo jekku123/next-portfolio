@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <NavTabs />
               <ModeToggle />
             </header>
-            <main className="grow p-4 flex justify-center items-center">
+            <main className="grow p-6 flex justify-center items-center max-w-6xl mx-auto">
               <PageAnimatePresence>{children}</PageAnimatePresence>
             </main>
           </div>
