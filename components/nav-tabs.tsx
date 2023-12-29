@@ -1,32 +1,33 @@
 'use client';
 
+import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 const tabs = [
-  { id: 0, label: 'Home', href: '/' },
-  // { id: 1, label: 'Services', href: '/services' },
-  { id: 2, label: 'Portfolio', href: '/portfolio' },
-  { id: 3, label: 'Contact', href: '/contact' },
-  { id: 4, label: 'About', href: '/about' },
+  { id: 1, label: 'Home', href: '/' },
+  { id: 2, label: 'Projects', href: '/projects' },
+  { id: 3, label: 'About', href: '/about' },
+  { id: 4, label: 'Contact', href: '/contact' },
 ];
 
-export function NavTabs() {
+export function NavTabs({ className }: { className?: string }) {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const pathname = usePathname();
 
   return (
-    <div className="flex space-x-4 items-center">
+    <div className={cn('flex space-x-4 items-center', className)}>
       {tabs.map((tab) => (
         <Link
           href={tab.href}
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
-          className={`${
+          className={cn(
+            'relative rounded-full px-3 py-1.5 text-sm text-foreground font-medium outline-sky-400 transition focus-visible:outline-2',
             activeTab === tab.id ? '' : 'hover:underline'
-          } relative rounded-full px-3 py-1.5 text-sm text-foreground font-medium outline-sky-400 transition focus-visible:outline-2`}
+          )}
           style={{
             WebkitTapHighlightColor: 'transparent',
           }}

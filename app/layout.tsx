@@ -1,6 +1,6 @@
 import PageAnimatePresence from '@/components/HOC/page-animate-presence';
-import { ModeToggle } from '@/components/mode-toggle';
-import { NavTabs } from '@/components/nav-tabs';
+import Footer from '@/components/footer';
+import Header from '@/components/header';
 import { ThemeProvider } from '@/components/theme-provider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -24,13 +24,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           disableTransitionOnChange
         >
           <div className="min-h-screen flex flex-col">
-            <header className="flex justify-center p-4 space-x-3">
-              <NavTabs />
-              <ModeToggle />
-            </header>
-            <main className="grow p-6 flex justify-center items-center max-w-6xl mx-auto">
+            <Header />
+            <div className="grow overflow-hidden">
               <PageAnimatePresence>{children}</PageAnimatePresence>
-            </main>
+            </div>
+            <Footer />
           </div>
         </ThemeProvider>
       </body>
