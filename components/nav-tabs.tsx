@@ -16,6 +16,7 @@ const tabs = [
 export function NavTabs({ className }: { className?: string }) {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const pathname = usePathname();
+  const pathOrigin = pathname.split('/')[1];
 
   return (
     <div className={cn('flex space-x-4 items-center', className)}>
@@ -32,7 +33,7 @@ export function NavTabs({ className }: { className?: string }) {
             WebkitTapHighlightColor: 'transparent',
           }}
         >
-          {pathname === tab.href && (
+          {`/${pathOrigin}` === tab.href && (
             <motion.span
               layoutId="bubble"
               className="absolute inset-0 z-10 bg-primary mix-blend-color-burn dark:mix-blend-difference"
