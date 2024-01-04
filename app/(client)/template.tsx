@@ -10,6 +10,7 @@ const variants = {
 export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <motion.main
+      className="grow flex flex-col"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

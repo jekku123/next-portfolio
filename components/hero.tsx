@@ -41,8 +41,8 @@ export default function Hero() {
   };
 
   return (
-    <div className="overflow-hidden min-h-[calc(100vh-150px)] relative">
-      <div className="h-full max-w-5xl px-6 pt-16 m-auto">
+    <div className="overflow-hidden relative grow">
+      <div className="h-full max-w-6xl px-6 pt-16 m-auto">
         <motion.div
           className="flex flex-col justify-center w-2/3 h-full gap-10"
           variants={textVariants}

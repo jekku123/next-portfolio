@@ -1,4 +1,6 @@
 import ProjectTeaser from '@/components/project-teaser';
+import { TypographyH1 } from '@/components/typography';
+
 import { getProjectTeasers } from '@/sanity/lib/client';
 
 export const revalidate = 60;
@@ -7,8 +9,8 @@ export default async function Projects() {
   const projects = await getProjectTeasers();
 
   return (
-    <main className="max-w-4xl mx-auto mt-9">
-      <h1>Projects</h1>
+    <div className="max-w-5xl mx-auto px-6 pt-12 w-full">
+      <TypographyH1>Projects</TypographyH1>
       <ul>
         {projects.map((project) => (
           <li key={project._id}>
@@ -16,6 +18,6 @@ export default async function Projects() {
           </li>
         ))}
       </ul>
-    </main>
+    </div>
   );
 }

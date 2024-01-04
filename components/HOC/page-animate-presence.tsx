@@ -9,7 +9,7 @@ const PageAnimatePresence = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div key={pathname}>
+      <motion.div key={pathname} className="grow flex flex-col">
         <FrozenRoute>{children}</FrozenRoute>
       </motion.div>
     </AnimatePresence>

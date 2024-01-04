@@ -2,6 +2,7 @@ import PageAnimatePresence from '@/components/HOC/page-animate-presence';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import { ThemeProvider } from '@/components/theme-provider';
+import { getCommonPageProps } from '@/lib/get-common-page-props';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -13,7 +14,11 @@ export const metadata: Metadata = {
   description: 'Portfolio of Jesse Manninen',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const revalidate = 60;
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const { menus } = await getCommonPageProps();
+
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -24,11 +29,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           disableTransitionOnChange
         >
           <div className="min-h-screen flex flex-col">
-            <Header />
-            <div className="grow">
+            <Header menu={menus.main} />
+            <div className="grow flex flex-col">
               <PageAnimatePresence>{children}</PageAnimatePresence>
             </div>
-            <Footer />
+            <Footer menu={menus.social} />
           </div>
         </ThemeProvider>
       </body>

@@ -1,21 +1,21 @@
 import { defineType } from 'sanity';
 
-export const projectSchema = defineType({
-  name: 'project',
-  title: 'Project',
+export const postSchema = defineType({
+  name: 'post',
   type: 'document',
+  title: 'Post',
   fields: [
     {
       name: 'title',
-      title: 'Title',
       type: 'string',
+      title: 'Title',
       validation: (Rule) => Rule.required().error('Title is required'),
     },
     {
       name: 'slug',
-      title: 'Slug',
-      description: 'This will be used to create the URL for this project',
       type: 'slug',
+      title: 'Slug',
+      description: 'This will be used to create the URL for this post',
       options: {
         source: 'title',
       },
@@ -23,14 +23,14 @@ export const projectSchema = defineType({
     },
     {
       name: 'excerpt',
-      title: 'Excerpt',
       type: 'text',
+      title: 'Excerpt',
       validation: (Rule) => Rule.max(200).error('Max 200 characters'),
     },
     {
       name: 'body',
-      title: 'Body',
       type: 'array',
+      title: 'Body',
       of: [
         { type: 'block' },
         {
@@ -38,46 +38,36 @@ export const projectSchema = defineType({
           fields: [
             {
               name: 'alt',
-              title: 'Alt',
               type: 'string',
+              title: 'Alt',
             },
           ],
         },
       ],
     },
     {
-      name: 'github',
-      title: 'GitHub',
-      type: 'url',
-    },
-    {
-      name: 'liveSite',
-      title: 'Live Site',
-      type: 'url',
-    },
-    {
       name: 'image',
-      title: 'Image',
       type: 'image',
+      title: 'Image',
       options: {
         hotspot: true,
       },
       fields: [
         {
           name: 'alt',
-          title: 'Alt',
           type: 'string',
+          title: 'Alt',
         },
       ],
     },
     {
-      name: 'technologies',
-      title: 'Technologies',
+      name: 'tags',
       type: 'array',
+      title: 'Tags',
       of: [
         {
           type: 'reference',
-          to: [{ type: 'skill' }],
+          to: [{ type: 'tag' }],
         },
       ],
     },

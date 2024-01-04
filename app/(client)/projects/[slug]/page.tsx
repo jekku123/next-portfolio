@@ -1,19 +1,20 @@
 import FormattedText from '@/components/formatted-text';
+import { TypographyH1 } from '@/components/typography';
+
 import { LinkButton } from '@/components/ui/link-button';
-import { ProjectType } from '@/lib/interface';
-import { client } from '@/sanity/lib/client';
+
+import { getProjectBySlug } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
 
 import Image from 'next/image';
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const project: ProjectType = await client.fetch(`*[_id == "${params.slug}"][0]`);
+export default async function Project({ params }: { params: { slug: string } }) {
+  const project = await getProjectBySlug(params.slug);
 
   return (
-    <>
-      <h1 className="text-6xl mb-16 mt-9">{project.title}</h1>
-      {/* {project.description && <p>{project.description}</p>} */}
-      <div className="flex gap-12 mx-auto max-w-2xl">
+    <div className="max-w-5xl mx-auto px-6 pt-12 w-full">
+      <TypographyH1>{project.title}</TypographyH1>
+      <div className="flex gap-12 mx-auto max-w-2xl mt-6">
         <div className="aspect-auto">
           <Image
             src={urlForImage(project.image)}
@@ -28,7 +29,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <FormattedText text={project.body} className="flex flex-col justify-center" />
         )}
       </div>
-      <div className="flex gap-4 justify-center mt-6">
+      <div className="flex gap-4 justify-center mt-10">
         {project.github && (
           <LinkButton variant="outline" href={project.github} newTab>
             See in Github
@@ -40,6 +41,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </LinkButton>
         )}
       </div>
-    </>
+      <div className="flex gap-4 justify-center mt-10">
+        {project.technologies.map((technology) => (
+          <span key={technology.title}>#{technology.title}</span>
+        ))}
+      </div>
+    </div>
   );
 }

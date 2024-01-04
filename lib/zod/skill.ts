@@ -6,12 +6,12 @@ export const SkillSchema = z.object({
   level: z.number(),
 });
 
-export function validateAndCleanupSkill(project: any): Skill | null {
+export function validateAndCleanupSkill(resource: any): Skill | null {
   try {
-    return SkillSchema.parse(project);
+    return SkillSchema.parse(resource);
   } catch (error) {
     const { name = 'ZodError', issues = [] } = error as { name?: string; issues?: any[] };
-    console.log(JSON.stringify({ name, issues, project }, null, 2));
+    console.log(JSON.stringify({ name, issues, resource }, null, 2));
     return null;
   }
 }

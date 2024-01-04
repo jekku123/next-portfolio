@@ -2,18 +2,18 @@ import { defineType } from 'sanity';
 
 export const skillSchema = defineType({
   name: 'skill',
-  title: 'Skill',
   type: 'document',
+  title: 'Skill',
   fields: [
     {
       name: 'title',
-      title: 'Title',
       type: 'string',
+      title: 'Title',
     },
     {
       name: 'level',
-      title: 'Level',
       type: 'number',
+      title: 'Level',
       description: '1-10',
     },
   ],

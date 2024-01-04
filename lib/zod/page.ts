@@ -1,27 +1,11 @@
 import { z } from 'zod';
 
-export const ProjectBaseSchema = z.object({
+const PageSchema = z.object({
   _id: z.string(),
   title: z.string(),
-  excerpt: z.string().nullable().optional(),
-  github: z.string().nullable().optional(),
-  liveSite: z.string().nullable().optional(),
-  image: z.object({
-    alt: z.string(),
-    asset: z.object({
-      _ref: z.string(),
-      _type: z.string(),
-    }),
+  slug: z.object({
+    current: z.string(),
   }),
-  technologies: z.array(
-    z.object({
-      _id: z.string(),
-      title: z.string(),
-    })
-  ),
-});
-
-const ProjectSchema = ProjectBaseSchema.extend({
   body: z.array(
     z.object({
       _key: z.string(),
@@ -46,9 +30,9 @@ const ProjectSchema = ProjectBaseSchema.extend({
   ),
 });
 
-export function validateAndCleanupProject(resource: any): Project | null {
+export function validateAndCleanupPage(resource: any): Page | null {
   try {
-    return ProjectSchema.parse(resource);
+    return PageSchema.parse(resource);
   } catch (error) {
     const { name = 'ZodError', issues = [] } = error as { name?: string; issues?: any[] };
     console.log(JSON.stringify({ name, issues, resource }, null, 2));
@@ -56,4 +40,4 @@ export function validateAndCleanupProject(resource: any): Project | null {
   }
 }
 
-export type Project = z.infer<typeof ProjectSchema>;
+export type Page = z.infer<typeof PageSchema>;

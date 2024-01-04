@@ -3,6 +3,7 @@ import { urlForImage } from '@/sanity/lib/image';
 import { Project as ProjectType } from '@/lib/zod/project';
 import Image from 'next/image';
 import FormattedText from './formatted-text';
+import { TypographyH1 } from './typography';
 import { LinkButton } from './ui/link-button';
 
 interface ProjectProps {
@@ -12,9 +13,8 @@ interface ProjectProps {
 export default function Project({ project }: ProjectProps) {
   return (
     <>
-      <h1 className="text-6xl mb-12 mt-9">{project.title}</h1>
-
-      <div className="flex gap-12 mx-auto max-w-2xl">
+      <TypographyH1>{project.title}</TypographyH1>
+      <div className="flex gap-12 mx-auto max-w-2xl mt-6">
         <div className="aspect-auto">
           <Image
             src={urlForImage(project.image)}
@@ -43,7 +43,7 @@ export default function Project({ project }: ProjectProps) {
       </div>
       <div className="flex gap-4 justify-center mt-10">
         {project.technologies.map((technology) => (
-          <span key={technology.title}>#{technology.title}</span>
+          <span key={technology._id}>#{technology.title}</span>
         ))}
       </div>
     </>

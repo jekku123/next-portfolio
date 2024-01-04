@@ -1,3 +1,4 @@
+import { MenuItem } from '@/lib/zod/menu';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 
@@ -30,16 +31,10 @@ const itemVariants = {
 
 interface MobileMenuProps {
   className?: string;
+  menu: MenuItem[];
 }
 
-const menu = [
-  { id: 1, label: 'Home', href: '/' },
-  { id: 2, label: 'Projects', href: '/projects' },
-  { id: 3, label: 'About', href: '/about' },
-  { id: 4, label: 'Contact', href: '/contact' },
-];
-
-export function MobileMenu({ className }: MobileMenuProps) {
+export function MobileMenu({ className, menu }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -98,7 +93,7 @@ export function MobileMenu({ className }: MobileMenuProps) {
             >
               {menu.map((item) => (
                 <div
-                  key={item.id}
+                  key={item._id}
                   className="flex flex-col items-center gap-4"
                   onClick={() => setOpen(false)}
                 >
@@ -108,7 +103,7 @@ export function MobileMenu({ className }: MobileMenuProps) {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Link href={item.href}>{item.label}</Link>
+                    <Link href={item.href}>{item.text}</Link>
                   </motion.div>
                 </div>
               ))}

@@ -1,6 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
+import { MenuItem } from '@/lib/zod/menu';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -9,11 +10,17 @@ import { useState } from 'react';
 const tabs = [
   { id: 1, label: 'Home', href: '/' },
   { id: 2, label: 'Projects', href: '/projects' },
-  { id: 3, label: 'About', href: '/about' },
-  { id: 4, label: 'Contact', href: '/contact' },
+  { id: 3, label: 'Blog', href: '/blog' },
+  { id: 4, label: 'About', href: '/about' },
+  { id: 5, label: 'Contact', href: '/contact' },
 ];
 
-export function NavTabs({ className }: { className?: string }) {
+interface NavTabsProps {
+  className?: string;
+  menu: MenuItem[];
+}
+
+export function NavTabs({ className, menu }: NavTabsProps) {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const pathname = usePathname();
   const pathOrigin = pathname.split('/')[1];
