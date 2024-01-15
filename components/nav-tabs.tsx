@@ -33,7 +33,7 @@ export function NavTabs({ className, menu }: NavTabsProps) {
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
           className={cn(
-            'relative rounded-full px-3 py-1.5 text-sm text-foreground font-medium outline-sky-400 transition focus-visible:outline-2',
+            'relative rounded-full px-3 py-1.5 text-sm text-foreground outline-sky-400 transition focus-visible:outline-2',
             activeTab === tab.id ? '' : 'hover:underline'
           )}
           style={{
@@ -41,6 +41,12 @@ export function NavTabs({ className, menu }: NavTabsProps) {
           }}
         >
           {`/${pathOrigin}` === tab.href && (
+            // <motion.span
+            //   layoutId="bubble"
+            //   className="absolute inset-0 z-10 bg-primary mix-blend-color-burn dark:mix-blend-difference"
+            //   style={{ borderRadius: 9999 }}
+            //   transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+            // />
             <motion.span
               layoutId="bubble"
               className="absolute inset-0 z-10 bg-primary mix-blend-color-burn dark:mix-blend-difference"

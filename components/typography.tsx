@@ -43,11 +43,7 @@ export function TypographyH4({ children, className }: TypographyProps) {
 }
 
 export function TypographyParagraph({ children, className }: TypographyProps) {
-  return (
-    <p className={cn('leading-7 [&:not(:first-child)]:mt-6 max-w-4xl mx-auto', className)}>
-      {children}
-    </p>
-  );
+  return <p className={cn('leading-7 max-w-4xl mx-auto', className)}>{children}</p>;
 }
 
 export function TypographyBlockquote({ children, className }: TypographyProps) {

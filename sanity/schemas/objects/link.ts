@@ -6,27 +6,16 @@ export const linkSchema = defineType({
   title: 'Link',
   fields: [
     {
-      name: 'isExternal',
-      type: 'boolean',
-      title: 'Content is from an external source',
-    },
-    {
-      name: 'internalLink',
-      type: 'reference',
-      title: 'Internal Link',
-      description: 'Select page for navigation',
-      to: [
-        { type: 'page' },
-        // { type: 'project' }
-      ],
-      hidden: ({ parent, value }) => !value && parent?.isExternal,
-    },
-    {
-      name: 'externalUrl',
+      name: 'external',
       type: 'url',
-      title: 'External URL',
-      description: "Use fully qualified URL's for external link",
-      hidden: ({ parent, value }) => !value && !parent?.isExternal,
+      title: 'URL',
+      hidden: ({ parent, value }) => !value && !!parent?.internal,
+    },
+    {
+      name: 'internal',
+      type: 'reference',
+      to: [{ type: 'page' }],
+      hidden: ({ parent, value }) => !value && !!parent?.external,
     },
   ],
 });

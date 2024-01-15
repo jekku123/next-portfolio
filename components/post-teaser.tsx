@@ -31,9 +31,7 @@ export function PostTeaser({ post }: PostTeaserProps) {
         <div className="mb-1 text-xs">
           <span className="font-bold">{date}</span>
           <span className="mx-2">|</span>
-          <span className="uppercase">
-            {post.tags.map((tag) => tag.title as string).join(', ')}
-          </span>
+          <span className="uppercase">{post.tags.map((tag) => tag as string).join(', ')}</span>
         </div>
         <h3 className="mt-1 font-bold underline-offset-2 line-clamp-2 text-heading-xs text-secondary-foreground group-hover:underline">
           {post.title}

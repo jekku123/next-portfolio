@@ -21,7 +21,9 @@ export default async function FormattedText({ text, className }: FormattedTextPr
       h2: ({ children }: any) => <TypographyH2>{children}</TypographyH2>,
       h3: ({ children }: any) => <TypographyH3>{children}</TypographyH3>,
       h4: ({ children }: any) => <TypographyH4>{children}</TypographyH4>,
-      normal: ({ children }: any) => <TypographyParagraph>{children}</TypographyParagraph>,
+      normal: ({ children }: any) => (
+        <TypographyParagraph className="[&:not(:first-child)]:mt-6">{children}</TypographyParagraph>
+      ),
       blockquote: ({ children }: any) => <TypographyBlockquote>{children}</TypographyBlockquote>,
     },
     list: {

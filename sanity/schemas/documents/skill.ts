@@ -11,10 +11,33 @@ export const skillSchema = defineType({
       title: 'Title',
     },
     {
-      name: 'level',
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug',
+      options: {
+        source: 'title',
+      },
+    },
+    {
+      name: 'logo',
+      type: 'image',
+      title: 'Logo',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alt',
+        },
+      ],
+    },
+    {
+      name: 'progress',
       type: 'number',
-      title: 'Level',
-      description: '1-10',
+      title: 'Progress',
+      description: '0-100',
     },
   ],
 });

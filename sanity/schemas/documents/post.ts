@@ -66,8 +66,9 @@ export const postSchema = defineType({
       title: 'Tags',
       of: [
         {
-          type: 'reference',
-          to: [{ type: 'tag' }],
+          name: 'tag',
+          type: 'string',
+          title: 'Tag',
         },
       ],
     },

@@ -12,11 +12,7 @@ export const PostBaseSchema = z.object({
       _type: z.string(),
     }),
   }),
-  tags: z.array(
-    z.object({
-      title: z.string(),
-    })
-  ),
+  tags: z.array(z.string()),
 });
 
 const PostSchema = PostBaseSchema.extend({

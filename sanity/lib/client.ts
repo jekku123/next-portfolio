@@ -1,20 +1,38 @@
 import { ProjectTeaser, validateAndCleanupProjectTeaser } from '@/lib/zod/project-teaser';
 
-import { createClient } from 'next-sanity';
+import { createClient } from '@sanity/client';
 
 import { Menu, validateAndCleanupMenu } from '@/lib/zod/menu';
 import { Page, validateAndCleanupPage } from '@/lib/zod/page';
 import { Post, validateAndCleanupPost } from '@/lib/zod/post';
 import { PostTeaser, validateAndCleanupPostTeaser } from '@/lib/zod/post-teaser';
 import { Project, validateAndCleanupProject } from '@/lib/zod/project';
-import { apiVersion, dataset, projectId, useCdn } from '../env';
+import { apiVersion, dataset, projectId, token, useCdn } from '../env';
 
 export const client = createClient({
   apiVersion,
   dataset,
   projectId,
   useCdn,
+  token,
 });
+
+export async function postContactForm(data: any) {
+  const doc = {
+    _type: 'submission',
+    ...data,
+    receivedAt: new Date().toISOString(),
+  };
+
+  client
+    .create(doc)
+    .then((res) => {
+      console.log(`Contact submission created ${res._id}`);
+    })
+    .catch((err) => {
+      console.error(`Oh no, the update failed: ${err.message}`);
+    });
+}
 
 export async function getProjectTeasers(): Promise<ProjectTeaser[]> {
   const query = `*[_type == "project"]
@@ -68,10 +86,11 @@ export async function getPostTeasers(): Promise<PostTeaser[]> {
     image,
     slug,
     _createdAt,
-    tags[]->{_id, title}
+    tags[]
   }`;
 
   const postTeasers = await client.fetch(query);
+  console.log('postTeasers', postTeasers);
 
   const validatedPostTeasers: PostTeaser[] = postTeasers.map((post: any) =>
     validateAndCleanupPostTeaser(post)
