@@ -67,6 +67,7 @@ export const projectSchema = defineType({
           name: 'alt',
           type: 'string',
           title: 'Alt',
+          validation: (Rule) => Rule.required().error('Alt is required'),
         },
       ],
     },
@@ -80,6 +81,21 @@ export const projectSchema = defineType({
           to: [{ type: 'skill' }],
         },
       ],
+    },
+    {
+      name: 'tags',
+      type: 'array',
+      title: 'Tags',
+      of: [
+        {
+          name: 'tag',
+          type: 'string',
+          title: 'Tag',
+        },
+      ],
+      options: {
+        layout: 'tags',
+      },
     },
   ],
 });

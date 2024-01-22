@@ -31,6 +31,7 @@ export const profileSchema = defineType({
           name: 'alt',
           type: 'string',
           title: 'Alt',
+          validation: (Rule) => Rule.required().error('Alt is required'),
         },
       ],
     },
@@ -69,33 +70,25 @@ export const profileSchema = defineType({
     },
     {
       name: 'socialLinks',
-      type: 'object',
+      type: 'array',
       title: 'Social Links',
-      fields: [
+      of: [
         {
-          name: 'github',
-          type: 'url',
-          title: 'GitHub',
-        },
-        {
-          name: 'linkedin',
-          type: 'url',
-          title: 'LinkedIn',
-        },
-        {
-          name: 'facebook',
-          type: 'url',
-          title: 'Facebook',
-        },
-        {
-          name: 'instagram',
-          type: 'url',
-          title: 'Instagram',
-        },
-        {
-          name: 'twitter',
-          type: 'url',
-          title: 'Twitter',
+          name: 'socialLink',
+          type: 'object',
+          title: 'Social Link',
+          fields: [
+            {
+              name: 'platform',
+              type: 'string',
+              title: 'Platform',
+            },
+            {
+              name: 'url',
+              type: 'url',
+              title: 'URL',
+            },
+          ],
         },
       ],
     },

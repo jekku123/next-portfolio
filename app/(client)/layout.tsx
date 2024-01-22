@@ -2,9 +2,11 @@ import PageAnimatePresence from '@/components/HOC/page-animate-presence';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import { ThemeProvider } from '@/components/theme-provider';
+import { Toaster } from '@/components/ui/sonner';
 import { getCommonPageProps } from '@/lib/get-common-page-props';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -36,6 +38,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <Footer menu={menus.social} />
           </div>
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );

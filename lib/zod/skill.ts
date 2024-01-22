@@ -3,7 +3,17 @@ import { z } from 'zod';
 export const SkillSchema = z.object({
   _id: z.string(),
   title: z.string(),
-  level: z.number(),
+  logo: z
+    .object({
+      alt: z.string(),
+      asset: z.object({
+        _ref: z.string(),
+        _type: z.string(),
+      }),
+    })
+    .optional()
+    .nullable(),
+  progress: z.number(),
 });
 
 export function validateAndCleanupSkill(resource: any): Skill | null {

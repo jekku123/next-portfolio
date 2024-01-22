@@ -41,10 +41,10 @@ export default function Hero() {
   };
 
   return (
-    <div className="overflow-hidden relative grow">
-      <div className="h-full max-w-6xl px-6 pt-16 m-auto">
+    <div className="overflow-hidden relative h-[calc(100vh-75px)]">
+      <div className="max-w-6xl px-6 m-auto h-full ">
         <motion.div
-          className="flex flex-col justify-center w-2/3 h-full gap-10"
+          className="flex flex-col justify-center h-full w-2/3 gap-9"
           variants={textVariants}
           initial="initial"
           animate="animate"
@@ -58,13 +58,13 @@ export default function Hero() {
 
           <motion.div className="z-20" variants={textVariants}>
             <motion.button
-              className="p-5 mr-5 font-light text-white bg-transparent border border-white border-solid cursor-pointer rounded-xl"
+              className="p-5 mr-5 font-light bg-transparent border border-solid cursor-pointer rounded-xl"
               variants={textVariants}
             >
               See the latest works
             </motion.button>
             <motion.button
-              className="p-5 mr-5 font-light text-white bg-transparent border border-white border-solid cursor-pointer rounded-xl"
+              className="p-5 mr-5 font-light bg-transparent border border-solid cursor-pointer rounded-xl"
               variants={textVariants}
             >
               Contact me
@@ -73,7 +73,7 @@ export default function Hero() {
         </motion.div>
       </div>
       <motion.div
-        className="absolute text-[50vh] bottom-[-120px] whitespace-nowrap text-[#ffffff0a] w-1/2 font-bold z-0"
+        className="absolute text-[50vh] bottom-[-120px] whitespace-nowrap text-[#e6e4e4d9] dark:text-[#ffffff0a] w-1/2 font-bold z-0"
         variants={sliderVariants}
         initial="initial"
         animate="animate"

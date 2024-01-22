@@ -57,6 +57,7 @@ export const postSchema = defineType({
           name: 'alt',
           type: 'string',
           title: 'Alt',
+          validation: (Rule) => Rule.required().error('Alt is required'),
         },
       ],
     },
@@ -71,6 +72,9 @@ export const postSchema = defineType({
           title: 'Tag',
         },
       ],
+      options: {
+        layout: 'tags',
+      },
     },
   ],
 });

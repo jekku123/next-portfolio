@@ -10,9 +10,11 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { postContactForm } from '@/sanity/lib/client';
+import { createSubmission } from '@/sanity/lib/client';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import * as z from 'zod';
 import { Textarea } from './ui/textarea';
 
@@ -38,9 +40,25 @@ export function ContactForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    postContactForm(values);
+  const {
+    setFocus,
+    formState: { isSubmitting },
+  } = form;
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const res = await createSubmission(values);
+
+    if (res) {
+      toast.success('Message sent!');
+      form.reset();
+    } else {
+      toast.error('Something went wrong.');
+    }
   }
+
+  useEffect(() => {
+    setFocus('name');
+  }, [setFocus]);
 
   return (
     <Form {...form}>
@@ -52,9 +70,8 @@ export function ContactForm() {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Name" {...field} />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -66,9 +83,8 @@ export function ContactForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Email" {...field} />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -80,19 +96,15 @@ export function ContactForm() {
             <FormItem>
               <FormLabel>Message</FormLabel>
               <FormControl>
-                <Textarea
-                  placeholder="Tell us a little bit about yourself"
-                  className="resize-none"
-                  {...field}
-                />
+                <Textarea placeholder="Message" className="resize-none" {...field} />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
         />
-
-        <Button type="submit">Submit</Button>
+        <Button variant="outline" type="submit" disabled={isSubmitting}>
+          Submit
+        </Button>
       </form>
     </Form>
   );

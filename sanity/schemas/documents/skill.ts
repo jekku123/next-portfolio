@@ -11,14 +11,6 @@ export const skillSchema = defineType({
       title: 'Title',
     },
     {
-      name: 'slug',
-      type: 'slug',
-      title: 'Slug',
-      options: {
-        source: 'title',
-      },
-    },
-    {
       name: 'logo',
       type: 'image',
       title: 'Logo',
@@ -30,6 +22,7 @@ export const skillSchema = defineType({
           name: 'alt',
           type: 'string',
           title: 'Alt',
+          validation: (Rule) => Rule.required().error('Alt is required'),
         },
       ],
     },

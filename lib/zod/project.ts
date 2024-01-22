@@ -4,8 +4,6 @@ export const ProjectBaseSchema = z.object({
   _id: z.string(),
   title: z.string(),
   excerpt: z.string().nullable().optional(),
-  github: z.string().nullable().optional(),
-  liveSite: z.string().nullable().optional(),
   image: z.object({
     alt: z.string(),
     asset: z.object({
@@ -19,9 +17,12 @@ export const ProjectBaseSchema = z.object({
       title: z.string(),
     })
   ),
+  tags: z.array(z.string()),
 });
 
 const ProjectSchema = ProjectBaseSchema.extend({
+  github: z.string().nullable().optional(),
+  liveSite: z.string().nullable().optional(),
   body: z.array(
     z.object({
       _key: z.string(),

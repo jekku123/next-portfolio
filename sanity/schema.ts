@@ -1,4 +1,3 @@
-import { siteConfig } from '@/app/(admin)/studio/[[...index]]/schemas/siteConfig';
 import { type SchemaTypeDefinition } from 'sanity';
 import { navigationSchema } from './schemas/documents/navigation';
 import { pageSchema } from './schemas/documents/page';
@@ -18,7 +17,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     navigationSchema,
     navigationItemSchema,
     linkSchema,
-    siteConfig,
     postSchema,
     profileSchema,
     contactSubmissionSchema,

@@ -7,6 +7,7 @@ import { Page, validateAndCleanupPage } from '@/lib/zod/page';
 import { Post, validateAndCleanupPost } from '@/lib/zod/post';
 import { PostTeaser, validateAndCleanupPostTeaser } from '@/lib/zod/post-teaser';
 import { Project, validateAndCleanupProject } from '@/lib/zod/project';
+import { Skill, validateAndCleanupSkill } from '@/lib/zod/skill';
 import { apiVersion, dataset, projectId, token, useCdn } from '../env';
 
 export const client = createClient({
@@ -17,34 +18,35 @@ export const client = createClient({
   token,
 });
 
-export async function postContactForm(data: any) {
+export async function createSubmission(data: any) {
   const doc = {
     _type: 'submission',
     ...data,
     receivedAt: new Date().toISOString(),
   };
 
-  client
-    .create(doc)
-    .then((res) => {
-      console.log(`Contact submission created ${res._id}`);
-    })
-    .catch((err) => {
-      console.error(`Oh no, the update failed: ${err.message}`);
-    });
+  try {
+    const response = await client.create(doc);
+    return response;
+  } catch (error: any) {
+    console.error('Oh no, the update failed: ', error.message);
+  }
 }
 
-export async function getProjectTeasers(): Promise<ProjectTeaser[]> {
-  const query = `*[_type == "project"]
+export async function getProjectTeasers({
+  limit,
+}: {
+  limit: number | null;
+}): Promise<ProjectTeaser[]> {
+  const query = `*[_type == "project"]${limit ? `[0...${limit}]` : ''}
   {
     _id,
     title,
     excerpt,
-    github,
-    liveSite,
     image,
     slug,
-    technologies[]->{_id, title}
+    technologies[]->{_id, title},
+    tags[]
   }`;
 
   const projectTeasers = await client.fetch(query);
@@ -64,7 +66,8 @@ export async function getProjectBySlug(slug: string): Promise<Project> {
     github,
     liveSite,
     image,
-    technologies[]->{_id, title}
+    technologies[]->{_id, title},
+    tags[]
   }`;
 
   const project = await client.fetch(query);
@@ -139,51 +142,6 @@ export async function getAboutPage(): Promise<Page> {
   return validatedPage;
 }
 
-export async function getSiteConfig(): Promise<any> {
-  const query = `*[_type == "siteConfig"][0]
-  {
-    title,
-    url,
-    frontpage->{
-      _id,
-      title,
-      slug,
-    },
-    mainNav->{
-      _id, 
-      title,
-      slug,
-      items[] {
-        "_id": _key,
-        text,
-        "newTab": navigationItemUrl.isExternal,
-        'href': select(
-          navigationItemUrl.isExternal => navigationItemUrl.externalUrl,
-          navigationItemUrl.internalLink->slug.current
-        )
-      }
-    },
-    socialNav->{
-      _id,
-      title,
-      slug,
-      items[] {
-        "_id": _key,
-        text,
-        "newTab": navigationItemUrl.isExternal,
-        "href": select(
-          navigationItemUrl.isExternal => navigationItemUrl.externalUrl,
-          navigationItemUrl.internalLink->slug.current
-        )
-      }
-    }
-  }`;
-
-  const commonData = await client.fetch(query);
-
-  return commonData;
-}
-
 export async function getMenu(slug: string): Promise<Menu> {
   const query = `*[_type == "navigation" && slug.current == "${slug}"][0] {
     _id,
@@ -207,4 +165,18 @@ export async function getMenu(slug: string): Promise<Menu> {
   }
 
   return validatedMenu;
+}
+
+export async function getSkills() {
+  const query = `*[_type == "skill"] {
+    _id,
+    title,
+    logo,
+    progress
+  }`;
+
+  const skills = await client.fetch(query);
+  const validatedSkills: Skill[] = skills.map((skill: any) => validateAndCleanupSkill(skill));
+
+  return validatedSkills;
 }
