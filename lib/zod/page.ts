@@ -6,6 +6,13 @@ const PageSchema = z.object({
   slug: z.object({
     current: z.string(),
   }),
+  image: z.object({
+    alt: z.string(),
+    asset: z.object({
+      _ref: z.string(),
+      _type: z.string(),
+    }),
+  }),
   body: z.array(
     z.object({
       _key: z.string(),

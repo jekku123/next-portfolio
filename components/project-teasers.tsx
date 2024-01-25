@@ -22,7 +22,7 @@ export function ProjectTeasers({ projects, heading }: ProjectTeaserProps) {
       <div className="flex items-center justify-center">
         {!projects?.length && <p className="py-4">No projects found</p>}
         {projects?.length && (
-          <LinkButton href="/blog" className="inline-flex px-5 py-3 mt-9 mr-4 text-base">
+          <LinkButton href="/projects" className="inline-flex px-5 py-3 mt-9 mr-4 text-base">
             All projects
           </LinkButton>
         )}

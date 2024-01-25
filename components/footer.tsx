@@ -15,11 +15,11 @@ export default function Footer({ menu }: FooterProps) {
           {menu?.map((link) => (
             <li key={link._id}>
               <SocialIcon
-                fgColor="gray"
+                fgColor="currentColor"
                 bgColor="transparent"
                 url={link.href}
                 target="_blank"
-                className="rounded-full hover:bg-accent transition-colors duration-300"
+                className="rounded-full hover:bg-accent transition-colors duration-300 text-muted-foreground"
               />
             </li>
           ))}

@@ -8,8 +8,7 @@ const inputVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          'text-primary-foreground border-border hover:border-input focus:border-primary-accent',
+        default: 'text-primary-foreground border-border hover:border-input focus:border-primary',
         secondary:
           'text-foreground border-primary-100 focus:border-primary-400 hover:border-primary-200',
       },
@@ -21,7 +20,7 @@ const inputVariants = cva(
 );
 
 const labelVariants = cva(
-  'absolute text-sm duration-300 transform -translate-y-6 scale-75 top-4 -z-10 origin-[0] peer-focus:start-0  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto',
+  'absolute text-sm duration-300 transform -translate-y-6 scale-75 top-4 -z-10 origin-[0] peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto',
   {
     variants: {
       variant: {

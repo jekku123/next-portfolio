@@ -34,10 +34,10 @@ export async function createSubmission(data: any) {
 }
 
 export async function getProjectTeasers({
-  limit,
+  limit = null,
 }: {
-  limit: number | null;
-}): Promise<ProjectTeaser[]> {
+  limit?: number | null;
+} = {}): Promise<ProjectTeaser[]> {
   const query = `*[_type == "project"]${limit ? `[0...${limit}]` : ''}
   {
     _id,
@@ -128,6 +128,7 @@ export async function getAboutPage(): Promise<Page> {
   {
     _id,
     title,
+    image,
     slug,
     body
   }`;

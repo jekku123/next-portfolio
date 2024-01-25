@@ -10,11 +10,11 @@ import {
 } from './typography';
 
 interface FormattedTextProps {
-  text: PortableTextBlock[];
+  content: PortableTextBlock[];
   className?: string;
 }
 
-export default async function FormattedText({ text, className }: FormattedTextProps) {
+export default async function FormattedText({ content, className }: FormattedTextProps) {
   const components = {
     block: {
       h1: ({ children }: any) => <TypographyH1>{children}</TypographyH1>,
@@ -43,7 +43,7 @@ export default async function FormattedText({ text, className }: FormattedTextPr
 
   return (
     <div className={className}>
-      <PortableText value={text} components={components} />
+      <PortableText value={content} components={components} />
     </div>
   );
 }

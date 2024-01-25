@@ -12,6 +12,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { createSubmission } from '@/sanity/lib/client';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Forward } from 'lucide-react';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -68,7 +69,7 @@ export function ContactForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel className="sr-only">Name</FormLabel>
               <FormControl>
                 <Input placeholder="Name" {...field} />
               </FormControl>
@@ -81,7 +82,7 @@ export function ContactForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel className="sr-only">Email</FormLabel>
               <FormControl>
                 <Input placeholder="Email" {...field} />
               </FormControl>
@@ -94,7 +95,7 @@ export function ContactForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Message</FormLabel>
+              <FormLabel className="sr-only">Message</FormLabel>
               <FormControl>
                 <Textarea placeholder="Message" className="resize-none" {...field} />
               </FormControl>
@@ -102,8 +103,9 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <Button variant="outline" type="submit" disabled={isSubmitting}>
-          Submit
+        <Button variant="default" type="submit" className="group" disabled={isSubmitting}>
+          Send
+          <Forward className="ml-2 w-5 h-5 transition-transform duration-500 group-hover:translate-x-1" />
         </Button>
       </form>
     </Form>

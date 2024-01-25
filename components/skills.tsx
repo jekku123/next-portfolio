@@ -11,7 +11,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
     <section className="max-w-5xl mx-auto w-full min-h-screen px-12 md:px-6 py-4 flex flex-col justify-center">
       <RevealInView>
         <TypographyH2>Skills</TypographyH2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 max-w-3xl w-full mx-auto gap-10 mt-9">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 max-w-4xl w-full mx-auto gap-10 mt-9">
           {skills.map((skill) => (
             <div key={skill._id} className="flex flex-col items-center justify-center gap-2">
               {skill?.logo && (

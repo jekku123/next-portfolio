@@ -21,6 +21,22 @@ export const pageSchema = defineType({
       validation: (Rule) => Rule.required().error('Slug is required'),
     },
     {
+      name: 'image',
+      type: 'image',
+      title: 'Image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alt',
+          validation: (Rule) => Rule.required().error('Alt is required'),
+        },
+      ],
+    },
+    {
       name: 'body',
       type: 'array',
       title: 'Body',

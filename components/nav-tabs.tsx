@@ -10,9 +10,8 @@ import { useState } from 'react';
 const tabs = [
   { id: 1, label: 'Home', href: '/' },
   { id: 2, label: 'Projects', href: '/projects' },
-  { id: 3, label: 'Blog', href: '/blog' },
-  { id: 4, label: 'About', href: '/about' },
-  { id: 5, label: 'Contact', href: '/contact' },
+  { id: 3, label: 'About', href: '/about' },
+  { id: 4, label: 'Contact', href: '/contact' },
 ];
 
 interface NavTabsProps {
@@ -33,26 +32,24 @@ export function NavTabs({ className, menu }: NavTabsProps) {
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
           className={cn(
-            'relative rounded-full px-3 py-1.5 text-sm text-foreground outline-sky-400 transition focus-visible:outline-2',
-            activeTab === tab.id ? '' : 'hover:underline'
+            'relative rounded-full px-3 py-1.5 text-sm text-foreground transition focus-visible:outline-2'
           )}
           style={{
             WebkitTapHighlightColor: 'transparent',
           }}
         >
           {`/${pathOrigin}` === tab.href && (
-            // <motion.span
-            //   layoutId="bubble"
-            //   className="absolute inset-0 z-10 bg-primary mix-blend-color-burn dark:mix-blend-difference"
-            //   style={{ borderRadius: 9999 }}
-            //   transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-            // />
             <motion.span
               layoutId="bubble"
-              className="absolute inset-0 z-10 bg-primary mix-blend-color-burn dark:mix-blend-difference"
+              className="absolute inset-0 z-10 bg-foreground mix-blend-color-burn dark:mix-blend-difference"
               style={{ borderRadius: 9999 }}
               transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
             />
+            // <motion.span
+            //   layoutId="underline"
+            //   className="absolute inset-0 z-10 border-b-2 border-solid border-primary"
+            //   transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+            // />
           )}
           {tab.label}
         </Link>
@@ -61,4 +58,4 @@ export function NavTabs({ className, menu }: NavTabsProps) {
   );
 }
 
-// mix-blend-color-burn
+// 'relative rounded-full px-3 py-1.5 text-sm text-foreground outline-sky-400 transition focus-visible:outline-2',

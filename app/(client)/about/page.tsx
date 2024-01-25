@@ -11,7 +11,7 @@ export default async function About() {
   return (
     <div className="max-w-5xl mx-auto px-6 pt-12 w-full">
       <TypographyH1>{content.title}</TypographyH1>
-      <FormattedText className="mt-9" text={content.body} />
+      <FormattedText className="mt-9" content={content.body} />
     </div>
   );
 }

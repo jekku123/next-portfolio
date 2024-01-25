@@ -14,7 +14,7 @@ export default async function Home() {
       <Hero />
       <About content={about} />
       <Skills skills={skills} />
-      <ProjectTeasers projects={projects} heading="Projects" />
+      <ProjectTeasers projects={projects} heading="Featured Projects" />
     </>
   );
 }

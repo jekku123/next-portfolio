@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { ArrowDown } from 'lucide-react';
 
 export default function Hero() {
   const textVariants = {
@@ -18,7 +19,7 @@ export default function Hero() {
     },
     scrollButton: {
       opacity: 0,
-      y: 10,
+      y: 15,
       transition: {
         repeat: Infinity,
         duration: 2,
@@ -56,7 +57,7 @@ export default function Hero() {
             Full-Stack Web Developer
           </motion.h1>
 
-          <motion.div className="z-20" variants={textVariants}>
+          <motion.div className="z-20 flex items-center" variants={textVariants}>
             <motion.button
               className="p-5 mr-5 font-light bg-transparent border border-solid cursor-pointer rounded-xl"
               variants={textVariants}
@@ -69,6 +70,14 @@ export default function Hero() {
             >
               Contact me
             </motion.button>
+
+            <motion.div
+              className="flex items-center justify-center"
+              variants={textVariants}
+              animate="scrollButton"
+            >
+              <ArrowDown size={24} />
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
