@@ -1,26 +1,32 @@
-import { ProjectTeaser, validateAndCleanupProjectTeaser } from '@/lib/zod/project-teaser';
+import {
+  ProjectTeaser,
+  validateAndCleanupProjectTeaser,
+} from "@/lib/zod/project-teaser";
 
-import { createClient } from '@sanity/client';
+import { createClient } from "@sanity/client";
 
-import { Menu, validateAndCleanupMenu } from '@/lib/zod/menu';
-import { Page, validateAndCleanupPage } from '@/lib/zod/page';
-import { Post, validateAndCleanupPost } from '@/lib/zod/post';
-import { PostTeaser, validateAndCleanupPostTeaser } from '@/lib/zod/post-teaser';
-import { Project, validateAndCleanupProject } from '@/lib/zod/project';
-import { Skill, validateAndCleanupSkill } from '@/lib/zod/skill';
-import { apiVersion, dataset, projectId, token, useCdn } from '../env';
+import { Menu, validateAndCleanupMenu } from "@/lib/zod/menu";
+import { Page, validateAndCleanupPage } from "@/lib/zod/page";
+import { Post, validateAndCleanupPost } from "@/lib/zod/post";
+import {
+  PostTeaser,
+  validateAndCleanupPostTeaser,
+} from "@/lib/zod/post-teaser";
+import { Project, validateAndCleanupProject } from "@/lib/zod/project";
+import { Skill, validateAndCleanupSkill } from "@/lib/zod/skill";
+import { apiVersion, dataset, projectId, token, useCdn } from "../env";
 
 export const client = createClient({
   apiVersion,
   dataset,
   projectId,
   useCdn,
-  token,
+  token: process.env.SANITY_API_WRITE_TOKEN || token,
 });
 
 export async function createSubmission(data: any) {
   const doc = {
-    _type: 'submission',
+    _type: "submission",
     ...data,
     receivedAt: new Date().toISOString(),
   };
@@ -29,7 +35,7 @@ export async function createSubmission(data: any) {
     const response = await client.create(doc);
     return response;
   } catch (error: any) {
-    console.error('Oh no, the update failed: ', error.message);
+    console.error("Oh no, the update failed: ", error.message);
   }
 }
 
@@ -38,7 +44,7 @@ export async function getProjectTeasers({
 }: {
   limit?: number | null;
 } = {}): Promise<ProjectTeaser[]> {
-  const query = `*[_type == "project"]${limit ? `[0...${limit}]` : ''}
+  const query = `*[_type == "project"]${limit ? `[0...${limit}]` : ""}
   {
     _id,
     title,
@@ -50,8 +56,8 @@ export async function getProjectTeasers({
   }`;
 
   const projectTeasers = await client.fetch(query);
-  const validatedProjectTeasers: ProjectTeaser[] = projectTeasers.map((project: any) =>
-    validateAndCleanupProjectTeaser(project)
+  const validatedProjectTeasers: ProjectTeaser[] = projectTeasers.map(
+    (project: any) => validateAndCleanupProjectTeaser(project),
   );
 
   return validatedProjectTeasers;
@@ -93,10 +99,10 @@ export async function getPostTeasers(): Promise<PostTeaser[]> {
   }`;
 
   const postTeasers = await client.fetch(query);
-  console.log('postTeasers', postTeasers);
+  console.log("postTeasers", postTeasers);
 
   const validatedPostTeasers: PostTeaser[] = postTeasers.map((post: any) =>
-    validateAndCleanupPostTeaser(post)
+    validateAndCleanupPostTeaser(post),
   );
 
   return validatedPostTeasers;
@@ -177,7 +183,9 @@ export async function getSkills() {
   }`;
 
   const skills = await client.fetch(query);
-  const validatedSkills: Skill[] = skills.map((skill: any) => validateAndCleanupSkill(skill));
+  const validatedSkills: Skill[] = skills.map((skill: any) =>
+    validateAndCleanupSkill(skill),
+  );
 
   return validatedSkills;
 }
