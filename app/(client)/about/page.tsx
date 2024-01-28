@@ -24,7 +24,7 @@ export default async function About() {
             <Image
               src={urlForImage(content.image)}
               width={384}
-              height={384}
+              height={383}
               alt={content.image.alt}
               className="h-auto w-full rounded-lg object-cover shadow-lg"
               priority
