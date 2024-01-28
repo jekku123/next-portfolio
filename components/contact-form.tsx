@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -8,26 +8,25 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { createSubmission } from '@/sanity/lib/client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Forward } from 'lucide-react';
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
-import * as z from 'zod';
-import { Textarea } from './ui/textarea';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { createSubmission } from "@/sanity/lib/client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Forward } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import * as z from "zod";
+import { Textarea } from "./ui/textarea";
 
 const formSchema = z.object({
   name: z.string().min(2, {
-    message: 'Name must be at least 2 characters.',
+    message: "Name must be at least 2 characters.",
   }),
   email: z.string().email({
-    message: 'Please enter a valid email address.',
+    message: "Please enter a valid email address.",
   }),
   message: z.string().min(5, {
-    message: 'Message must be at least 5 characters.',
+    message: "Message must be at least 5 characters.",
   }),
 });
 
@@ -35,14 +34,13 @@ export function ContactForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: '',
-      email: '',
-      message: '',
+      name: "",
+      email: "",
+      message: "",
     },
   });
 
   const {
-    setFocus,
     formState: { isSubmitting },
   } = form;
 
@@ -50,16 +48,12 @@ export function ContactForm() {
     const res = await createSubmission(values);
 
     if (res) {
-      toast.success('Message sent!');
+      toast.success("Message sent!");
       form.reset();
     } else {
-      toast.error('Something went wrong.');
+      toast.error("Something went wrong.");
     }
   }
-
-  useEffect(() => {
-    setFocus('name');
-  }, [setFocus]);
 
   return (
     <Form {...form}>
@@ -97,15 +91,24 @@ export function ContactForm() {
             <FormItem>
               <FormLabel className="sr-only">Message</FormLabel>
               <FormControl>
-                <Textarea placeholder="Message" className="resize-none" {...field} />
+                <Textarea
+                  placeholder="Message"
+                  className="resize-none"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button variant="default" type="submit" className="group" disabled={isSubmitting}>
-          Send
-          <Forward className="ml-2 w-5 h-5 transition-transform duration-500 group-hover:translate-x-1" />
+        <Button
+          variant="outline"
+          type="submit"
+          className="group"
+          disabled={isSubmitting}
+        >
+          Submit
+          <Forward className="ml-2 h-5 w-5 transition-transform duration-500 group-hover:translate-x-1" />
         </Button>
       </form>
     </Form>

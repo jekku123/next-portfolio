@@ -1,10 +1,17 @@
-'use client';
+"use client";
 
-import { MenuItem } from '@/lib/zod/menu';
-import { AnimatePresence, motion } from 'framer-motion';
-import Link from 'next/link';
+import { MenuItem } from "@/lib/zod/menu";
+import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 
-import { useState } from 'react';
+import { useState } from "react";
+
+const tabs = [
+  { id: 1, label: "Home", href: "/" },
+  { id: 2, label: "About", href: "/about" },
+  { id: 3, label: "Projects", href: "/projects" },
+  { id: 4, label: "Contact", href: "/contact" },
+];
 
 const variants = {
   open: {
@@ -41,17 +48,21 @@ export function MobileMenu({ className, menu }: MobileMenuProps) {
 
   return (
     <div className={className}>
-      <button className="z-50" aria-label="menu-toggle" onClick={() => setOpen((prev) => !prev)}>
+      <button
+        className="z-50"
+        aria-label="menu-toggle"
+        onClick={() => setOpen((prev) => !prev)}
+      >
         <svg width="23" height="23" viewBox="0 0 23 23">
           <motion.path
             strokeWidth="3"
             stroke="currentColor"
             strokeLinecap="round"
             variants={{
-              closed: { d: 'M 2 2.5 L 20 2.5' },
-              open: { d: 'M 3 16.5 L 17 2.5' },
+              closed: { d: "M 2 2.5 L 20 2.5" },
+              open: { d: "M 3 16.5 L 17 2.5" },
             }}
-            animate={open ? 'open' : 'closed'}
+            animate={open ? "open" : "closed"}
           />
           <motion.path
             strokeWidth="3"
@@ -62,17 +73,17 @@ export function MobileMenu({ className, menu }: MobileMenuProps) {
               closed: { opacity: 1 },
               open: { opacity: 0 },
             }}
-            animate={open ? 'open' : 'closed'}
+            animate={open ? "open" : "closed"}
           />
           <motion.path
             strokeWidth="3"
             stroke="currentColor"
             strokeLinecap="round"
             variants={{
-              closed: { d: 'M 2 16.346 L 20 16.346' },
-              open: { d: 'M 3 2.5 L 17 16.346' },
+              closed: { d: "M 2 16.346 L 20 16.346" },
+              open: { d: "M 3 2.5 L 17 16.346" },
             }}
-            animate={open ? 'open' : 'closed'}
+            animate={open ? "open" : "closed"}
           />
         </svg>
       </button>
@@ -80,32 +91,32 @@ export function MobileMenu({ className, menu }: MobileMenuProps) {
         {open && (
           <motion.div
             initial="closed"
-            animate={open ? 'open' : 'closed'}
+            animate={open ? "open" : "closed"}
             exit="closed"
             transition={{ duration: 0.5 }}
             variants={{
               open: { opacity: 1, scale: 1 },
               closed: { opacity: 0, scale: 1 },
             }}
-            className="absolute top-0 left-0 z-40 w-full h-screen bg-background"
+            className="absolute left-0 top-0 z-40 h-screen w-full bg-background"
           >
             <motion.div
-              className="flex flex-col items-center justify-center w-full h-full gap-5 "
+              className="flex h-full w-full flex-col items-center justify-center gap-5 "
               variants={variants}
             >
-              {menu.map((item) => (
+              {tabs.map((item) => (
                 <div
-                  key={item._id}
+                  key={item.id}
                   className="flex flex-col items-center gap-4"
                   onClick={() => setOpen(false)}
                 >
                   <motion.div
-                    className="text-3xl hover:text-primary-accent"
+                    className="hover:text-primary-accent text-3xl"
                     variants={itemVariants}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Link href={item.href}>{item.text}</Link>
+                    <Link href={item.href}>{item.label}</Link>
                   </motion.div>
                 </div>
               ))}

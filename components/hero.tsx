@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { ArrowDown } from 'lucide-react';
+import { Variants, motion } from "framer-motion";
+import { ArrowDown } from "lucide-react";
 
 export default function Hero() {
   const textVariants = {
@@ -32,40 +32,49 @@ export default function Hero() {
       x: 0,
     },
     animate: {
-      x: '-220%',
+      x: "-220%",
       transition: {
         repeat: Infinity,
-        repeatType: 'mirror',
+        repeatType: "mirror",
         duration: 30,
       },
     },
   };
 
   return (
-    <div className="overflow-hidden relative h-[calc(100vh-75px)]">
-      <div className="max-w-6xl px-6 m-auto h-full ">
+    <section className="relative h-[calc(100vh-75px)]">
+      <div className="mx-auto h-full max-w-6xl px-6">
         <motion.div
-          className="flex flex-col justify-center h-full w-2/3 gap-9"
+          className="flex h-full w-2/3 flex-col justify-center gap-9"
           variants={textVariants}
           initial="initial"
           animate="animate"
         >
-          <motion.h2 className="text-3xl text-purple-600 tracking-[10px]" variants={textVariants}>
+          <motion.h2
+            className="text-2xl tracking-[10px] text-primary md:text-3xl"
+            variants={textVariants}
+          >
             Jesse Manninen
           </motion.h2>
-          <motion.h1 className="font-bold text-7xl" variants={textVariants}>
+          <motion.h1
+            className="scroll-m-20 text-6xl font-bold tracking-tight md:text-7xl"
+            variants={textVariants}
+          >
             Full-Stack Web Developer
           </motion.h1>
 
-          <motion.div className="z-20 flex items-center" variants={textVariants}>
+          <motion.div
+            className="z-20 flex flex-col items-start gap-5 md:flex-row md:items-center"
+            variants={textVariants}
+          >
             <motion.button
-              className="p-5 mr-5 font-light bg-transparent border border-solid cursor-pointer rounded-xl"
+              className="cursor-pointer rounded-xl border border-solid bg-transparent p-5 font-light"
               variants={textVariants}
             >
-              See the latest works
+              Projects
             </motion.button>
             <motion.button
-              className="p-5 mr-5 font-light bg-transparent border border-solid cursor-pointer rounded-xl"
+              className="cursor-pointer rounded-xl border border-solid bg-transparent p-5 font-light"
               variants={textVariants}
             >
               Contact me
@@ -82,13 +91,13 @@ export default function Hero() {
         </motion.div>
       </div>
       <motion.div
-        className="absolute text-[50vh] bottom-[-120px] whitespace-nowrap text-[#e6e4e4d9] dark:text-[#ffffff0a] w-1/2 font-bold z-0"
-        variants={sliderVariants}
+        className="absolute bottom-[-120px] z-0 w-1/2 whitespace-nowrap text-[50vh] font-bold text-[#e6e4e4d9] dark:text-[#ffffff0a]"
+        variants={sliderVariants as Variants}
         initial="initial"
         animate="animate"
       >
         Developer, Creator, Consult
       </motion.div>
-    </div>
+    </section>
   );
 }

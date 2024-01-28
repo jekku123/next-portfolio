@@ -56,4 +56,12 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  html {
+    @apply snap-y snap-mandatory scroll-smooth;
+  }
+
+  section {
+    @apply snap-center;
+  }
 }

@@ -1,24 +1,29 @@
-import PageAnimatePresence from '@/components/HOC/page-animate-presence';
-import Footer from '@/components/footer';
-import Header from '@/components/header';
-import { ThemeProvider } from '@/components/theme-provider';
-import { Toaster } from '@/components/ui/sonner';
-import { getCommonPageProps } from '@/lib/get-common-page-props';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import PageAnimatePresence from "@/components/HOC/page-animate-presence";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
+import { getCommonPageProps } from "@/lib/get-common-page-props";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 
-import './globals.css';
+import { ScrollTop } from "@/components/scroll-top";
+import "./globals.css";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Portfolio | Jesse Manninen',
-  description: 'Portfolio of Jesse Manninen',
+  title: "Portfolio | Jesse Manninen",
+  description: "Portfolio of Jesse Manninen",
 };
 
 export const revalidate = 60;
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const { menus } = await getCommonPageProps();
 
   return (
@@ -30,14 +35,17 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           enableSystem
           disableTransitionOnChange
         >
-          <div className="min-h-screen flex flex-col">
+          <div className="flex min-h-screen flex-col">
             <Header menu={menus.main} />
-            <div className="grow flex flex-col">
+
+            <div className="flex grow flex-col overflow-hidden">
               <PageAnimatePresence>{children}</PageAnimatePresence>
             </div>
+
             <Footer menu={menus.social} />
           </div>
         </ThemeProvider>
+        <ScrollTop />
         <Toaster />
       </body>
     </html>
