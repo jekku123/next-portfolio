@@ -11,6 +11,7 @@ export const revalidate = 60;
 
 export default async function About() {
   const content: Page = await getAboutPage();
+
   return (
     <div className="flex grow items-center">
       <div className="mx-auto max-w-5xl px-12 py-6 md:px-6">

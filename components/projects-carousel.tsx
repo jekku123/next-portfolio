@@ -1,30 +1,23 @@
-'use client';
+"use client";
 
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/components/ui/carousel';
-import { urlForImage } from '@/sanity/lib/image';
-import Image from 'next/image';
+} from "@/components/ui/carousel";
+import { Image as ImageType } from "@/lib/zod/image";
+import { urlForImage } from "@/sanity/lib/image";
+import Image from "next/image";
 
-interface ProjectCarouselProps {
-  alt: string;
-  asset: {
-    _ref: string;
-    _type: string;
-  };
-}
-
-export function ProjectCarousel({ items }: { items: ProjectCarouselProps[] }) {
+export function ProjectCarousel({ items }: { items: ImageType[] }) {
   return (
     <Carousel className="w-full max-w-xs">
       <CarouselContent>
-        {items.map((item, index) => (
-          <CarouselItem key={index}>
+        {items.map((item) => (
+          <CarouselItem key={item.alt}>
             <Card>
               <CardContent>
                 <Image
@@ -32,7 +25,7 @@ export function ProjectCarousel({ items }: { items: ProjectCarouselProps[] }) {
                   alt={item.alt}
                   width="300"
                   height="200"
-                  className="object-cover rounded-md w-full h-auto"
+                  className="h-auto w-full rounded-md object-cover"
                   priority
                 />
               </CardContent>

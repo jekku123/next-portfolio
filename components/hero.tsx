@@ -2,6 +2,7 @@
 
 import { Variants, motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import Image from "next/image";
 
 export default function Hero() {
   const textVariants = {
@@ -43,9 +44,9 @@ export default function Hero() {
 
   return (
     <section className="relative h-[calc(100vh-75px)]">
-      <div className="mx-auto h-full max-w-6xl px-6">
+      <div className="mx-auto grid h-full w-full max-w-6xl grid-cols-1 px-6 md:grid-cols-2">
         <motion.div
-          className="flex h-full w-2/3 flex-col justify-center gap-9"
+          className="flex h-full flex-col justify-center gap-6"
           variants={textVariants}
           initial="initial"
           animate="animate"
@@ -89,15 +90,25 @@ export default function Hero() {
             </motion.div>
           </motion.div>
         </motion.div>
+
+        <div className="z-50 hidden md:flex md:items-center md:justify-center">
+          <Image
+            src="/pngegg.png"
+            alt="hero image"
+            width={500}
+            height={500}
+            className="rounded-full object-cover"
+          />
+        </div>
+        <motion.div
+          className="absolute bottom-[-120px] z-0 w-1/2 whitespace-nowrap text-[50vh] font-bold text-[#e6e4e4d9] dark:text-[#ffffff0a]"
+          variants={sliderVariants as Variants}
+          initial="initial"
+          animate="animate"
+        >
+          Developer, Creator, Consult
+        </motion.div>
       </div>
-      <motion.div
-        className="absolute bottom-[-120px] z-0 w-1/2 whitespace-nowrap text-[50vh] font-bold text-[#e6e4e4d9] dark:text-[#ffffff0a]"
-        variants={sliderVariants as Variants}
-        initial="initial"
-        animate="animate"
-      >
-        Developer, Creator, Consult
-      </motion.div>
     </section>
   );
 }
