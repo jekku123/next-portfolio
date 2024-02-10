@@ -23,6 +23,7 @@
     "@sanity/vision": "^3.23.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "dotenv": "^16.4.1",
     "embla-carousel-react": "^8.0.0-rc17",
     "framer-motion": "^10.16.16",
     "lucide-react": "^0.302.0",
