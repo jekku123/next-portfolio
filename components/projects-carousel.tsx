@@ -1,6 +1,5 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -14,22 +13,18 @@ import Image from "next/image";
 
 export function ProjectCarousel({ items }: { items: ImageType[] }) {
   return (
-    <Carousel className="w-full max-w-xs">
+    <Carousel className="mx-auto w-full max-w-xs md:mx-9">
       <CarouselContent>
         {items.map((item) => (
           <CarouselItem key={item.alt}>
-            <Card>
-              <CardContent>
-                <Image
-                  src={urlForImage(item.asset)}
-                  alt={item.alt}
-                  width="300"
-                  height="200"
-                  className="h-auto w-full rounded-md object-cover"
-                  priority
-                />
-              </CardContent>
-            </Card>
+            <Image
+              src={urlForImage(item.asset)}
+              alt={item.alt}
+              width="300"
+              height="200"
+              className="h-auto w-full rounded-md object-cover"
+              priority
+            />
           </CarouselItem>
         ))}
       </CarouselContent>
