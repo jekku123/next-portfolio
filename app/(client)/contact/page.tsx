@@ -11,7 +11,7 @@ export default async function Contact() {
   const { items } = await getMenu("social-menu");
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl grow items-center px-12 py-6 md:px-6">
+    <div className="mx-auto flex min-h-[calc(100vh-140px)] max-w-5xl flex-col justify-center  px-12 py-6 md:px-6">
       <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
         <div className="flex flex-col justify-center gap-4">
           <TypographyH3 className="tracking-[10px] text-primary">
@@ -47,7 +47,7 @@ export default async function Contact() {
 
 {
   /* <div className="mx-auto flex w-full max-w-5xl grow items-center px-12 py-6 md:px-6">
-<div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
+  <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
   <div className="flex flex-col justify-center gap-4">
     <TypographyH3 className="tracking-[10px] text-primary">
       Contact

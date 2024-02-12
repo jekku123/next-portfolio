@@ -7,11 +7,7 @@ import { createClient } from "@sanity/client";
 
 import { Menu, validateAndCleanupMenu } from "@/lib/zod/menu";
 import { Page, validateAndCleanupPage } from "@/lib/zod/page";
-import { Post, validateAndCleanupPost } from "@/lib/zod/post";
-import {
-  PostTeaser,
-  validateAndCleanupPostTeaser,
-} from "@/lib/zod/post-teaser";
+
 import { Project, validateAndCleanupProject } from "@/lib/zod/project";
 import { Skill, validateAndCleanupSkill } from "@/lib/zod/skill";
 import { apiVersion, dataset, projectId, token, useCdn } from "../env";
@@ -84,49 +80,6 @@ export async function getProjectBySlug(slug: string): Promise<Project> {
   }
 
   return validatedProject;
-}
-
-export async function getPostTeasers(): Promise<PostTeaser[]> {
-  const query = `*[_type == "post"]
-  {
-    _id,
-    title,
-    excerpt,
-    image,
-    slug,
-    _createdAt,
-    tags[]
-  }`;
-
-  const postTeasers = await client.fetch(query);
-  console.log("postTeasers", postTeasers);
-
-  const validatedPostTeasers: PostTeaser[] = postTeasers.map((post: any) =>
-    validateAndCleanupPostTeaser(post),
-  );
-
-  return validatedPostTeasers;
-}
-
-export async function getPostBySlug(slug: string): Promise<Post> {
-  const query = `*[_type == "post" && slug.current == "${slug}"][0]
-  {
-    _id,
-    title,
-    body,
-    image,
-    _createdAt,
-    tags[]->{_id, title}
-  }`;
-
-  const post = await client.fetch(query);
-  const validatedPost = validateAndCleanupPost(post);
-
-  if (!validatedPost) {
-    throw new Error(`Post ${slug} not found`);
-  }
-
-  return validatedPost;
 }
 
 export async function getAboutPage(): Promise<Page> {

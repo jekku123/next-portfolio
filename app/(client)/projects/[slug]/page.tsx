@@ -1,35 +1,47 @@
-import FormattedText from '@/components/formatted-text';
-import { TypographyH1 } from '@/components/typography';
+import FormattedText from "@/components/formatted-text";
+import { TypographyH2 } from "@/components/typography";
 
-import { LinkButton } from '@/components/ui/link-button';
+import { LinkButton } from "@/components/ui/link-button";
 
-import { getProjectBySlug } from '@/sanity/lib/client';
-import { urlForImage } from '@/sanity/lib/image';
-import Image from 'next/image';
+import { getProjectBySlug } from "@/sanity/lib/client";
+import { urlForImage } from "@/sanity/lib/image";
 
-export default async function Project({ params }: { params: { slug: string } }) {
+import Image from "next/image";
+
+export default async function Project({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const project = await getProjectBySlug(params.slug);
 
   const imageArray = [project.image];
 
   return (
-    <div className="max-w-5xl mx-auto px-12 md:px-6 pt-12 w-full">
-      <TypographyH1>{project.title}</TypographyH1>
-      <div className="grid grid-cols-1 md:grid-cols-3 mt-9">
-        <Image
-          src={urlForImage(project.image)}
-          alt={project.image.alt}
-          width="300"
-          height="200"
-          className="object-cover rounded-md w-full h-auto"
-          priority
-        />
-
+    <div className="mx-auto flex min-h-[calc(100vh-140px)] max-w-5xl flex-col justify-center px-12 py-6 md:px-6">
+      <TypographyH2 className="text-center md:text-start">
+        {project.title}
+      </TypographyH2>
+      <div className="mt-9 flex flex-col gap-10 md:flex-row">
         {project.body && (
-          <FormattedText content={project.body} className="col-span-2 pl-5 mt-6 md:mt-0" />
+          <FormattedText
+            content={project.body}
+            className="mt-6 w-full text-muted-foreground md:mt-0 md:w-2/3"
+          />
         )}
+        <div className="relative w-full md:w-1/3">
+          <Image
+            src={urlForImage(project.image)}
+            alt={project.image.alt}
+            width="300"
+            height="200"
+            className="h-auto w-full rounded-md object-cover"
+            priority
+          />
+        </div>
       </div>
-      <div className="flex gap-4 justify-center mt-10">
+
+      <div className="mt-10 flex justify-center gap-4">
         {project.github && (
           <LinkButton variant="outline" href={project.github} newTab>
             See in Github
@@ -41,7 +53,7 @@ export default async function Project({ params }: { params: { slug: string } }) 
           </LinkButton>
         )}
       </div>
-      <div className="flex gap-4 justify-center mt-10">
+      <div className="mt-10 flex justify-center gap-4">
         {project.technologies.map((technology) => (
           <span key={technology.title}>#{technology.title}</span>
         ))}

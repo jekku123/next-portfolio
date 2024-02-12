@@ -45,8 +45,8 @@ export default async function RootLayout({
             <Footer menu={menus.social} />
           </div>
         </ThemeProvider>
-        <ScrollTop />
         <Toaster />
+        <ScrollTop />
       </body>
     </html>
   );

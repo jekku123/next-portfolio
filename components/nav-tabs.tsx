@@ -32,7 +32,7 @@ export function NavTabs({ className, menu }: NavTabsProps) {
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
           className={cn(
-            "relative px-3 py-1.5 text-sm text-foreground transition focus-visible:outline-2",
+            "text-md relative px-3 py-1.5 text-foreground transition focus-visible:outline-2",
           )}
           style={{
             WebkitTapHighlightColor: "transparent",

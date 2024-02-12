@@ -1,5 +1,5 @@
-import { PortableText } from '@portabletext/react';
-import { PortableTextBlock } from 'sanity';
+import { PortableText } from "@portabletext/react";
+import { PortableTextBlock } from "sanity";
 import {
   TypographyBlockquote,
   TypographyH1,
@@ -7,14 +7,17 @@ import {
   TypographyH3,
   TypographyH4,
   TypographyParagraph,
-} from './typography';
+} from "./typography";
 
 interface FormattedTextProps {
   content: PortableTextBlock[];
   className?: string;
 }
 
-export default async function FormattedText({ content, className }: FormattedTextProps) {
+export default async function FormattedText({
+  content,
+  className,
+}: FormattedTextProps) {
   const components = {
     block: {
       h1: ({ children }: any) => <TypographyH1>{children}</TypographyH1>,
@@ -22,9 +25,13 @@ export default async function FormattedText({ content, className }: FormattedTex
       h3: ({ children }: any) => <TypographyH3>{children}</TypographyH3>,
       h4: ({ children }: any) => <TypographyH4>{children}</TypographyH4>,
       normal: ({ children }: any) => (
-        <TypographyParagraph className="[&:not(:first-child)]:mt-6">{children}</TypographyParagraph>
+        <TypographyParagraph className="text-muted-foreground [&:not(:first-child)]:mt-6">
+          {children}
+        </TypographyParagraph>
       ),
-      blockquote: ({ children }: any) => <TypographyBlockquote>{children}</TypographyBlockquote>,
+      blockquote: ({ children }: any) => (
+        <TypographyBlockquote>{children}</TypographyBlockquote>
+      ),
     },
     list: {
       bullet: ({ children }: any) => (
@@ -34,7 +41,7 @@ export default async function FormattedText({ content, className }: FormattedTex
     },
     listItem: {
       bullet: ({ children }: any) => (
-        <li className="ml-4" style={{ listStyleType: 'disclosure-closed' }}>
+        <li className="ml-4" style={{ listStyleType: "disclosure-closed" }}>
           {children}
         </li>
       ),

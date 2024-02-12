@@ -43,44 +43,45 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative h-[calc(100vh-75px)]">
-      <div className="mx-auto grid h-full w-full max-w-6xl grid-cols-1 px-6 md:grid-cols-2">
+    <section className="relative min-h-[calc(100vh-75px)]">
+      <div className="mx-auto grid h-full w-full max-w-6xl grid-cols-1 px-6 md:grid-cols-3 md:pt-0">
         <motion.div
-          className="flex h-full flex-col justify-center gap-6"
+          className="col-span-2 flex h-full flex-col justify-center gap-6 text-balance"
           variants={textVariants}
           initial="initial"
           animate="animate"
         >
           <motion.h2
-            className="text-2xl tracking-[10px] text-primary md:text-3xl"
+            className="text-center text-xl tracking-[10px] text-primary md:text-left md:text-3xl"
             variants={textVariants}
           >
             Jesse Manninen
           </motion.h2>
           <motion.h1
-            className="scroll-m-20 text-6xl font-bold tracking-tight md:text-7xl"
+            className="scroll-m-20 text-center text-[2.5rem] font-bold tracking-tight sm:text-7xl md:text-left"
             variants={textVariants}
           >
             Full-Stack Web Developer
           </motion.h1>
 
           <motion.div
-            className="z-20 flex flex-col items-start gap-5 md:flex-row md:items-center"
+            className="z-20 flex flex-col items-center gap-5 md:flex-row md:items-start"
             variants={textVariants}
           >
-            <motion.button
-              className="cursor-pointer rounded-xl border border-solid bg-transparent p-5 font-light"
-              variants={textVariants}
-            >
-              Projects
-            </motion.button>
-            <motion.button
-              className="cursor-pointer rounded-xl border border-solid bg-transparent p-5 font-light"
-              variants={textVariants}
-            >
-              Contact me
-            </motion.button>
-
+            <div className="flex gap-5">
+              <motion.button
+                className="cursor-pointer rounded-xl border border-solid bg-transparent px-5 py-3 font-light"
+                variants={textVariants}
+              >
+                About me
+              </motion.button>
+              <motion.button
+                className="cursor-pointer rounded-xl border border-solid bg-transparent px-5 py-3 font-light"
+                variants={textVariants}
+              >
+                Contact me
+              </motion.button>
+            </div>
             <motion.div
               className="flex items-center justify-center"
               variants={textVariants}
@@ -91,13 +92,13 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        <div className="z-50 hidden md:flex md:items-center md:justify-center">
+        <div className="z-30 flex items-center justify-center">
           <Image
             src="/pngegg.png"
             alt="hero image"
             width={500}
-            height={500}
-            className="rounded-full object-cover"
+            height={375}
+            className="h-auto w-full rounded-full object-cover"
           />
         </div>
         <motion.div

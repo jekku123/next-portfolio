@@ -26,7 +26,7 @@ export function ProjectTeasers({ projects, heading }: ProjectTeaserProps) {
           <LinkButton
             href="/projects"
             className="mr-4 mt-9 inline-flex px-5 py-3 text-base"
-            variant="outline"
+            variant="secondary"
           >
             All projects
           </LinkButton>
