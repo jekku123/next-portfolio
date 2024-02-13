@@ -37,7 +37,7 @@ export default async function Contact() {
             ))}
           </ul>
         </div>
-        <div className="mx-auto w-full max-w-sm">
+        <div className="mx-auto w-full max-w-sm md:mx-0 md:justify-self-end">
           <ContactForm />
         </div>
       </div>

@@ -44,7 +44,7 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[calc(100vh-75px)]">
-      <div className="mx-auto grid h-full w-full max-w-6xl grid-cols-1 px-6 sm:pt-0 md:grid-cols-3">
+      <div className="mx-auto grid h-full w-full max-w-6xl grid-cols-1 px-6 md:grid-cols-3">
         <motion.div
           className="col-span-2 flex h-full flex-col justify-center gap-6 text-balance"
           variants={textVariants}
@@ -98,7 +98,7 @@ export default function Hero() {
             alt="hero image"
             width={500}
             height={375}
-            className="h-auto w-full rounded-full object-cover"
+            className="aspect-square h-auto w-full max-w-[350px] rounded-full object-cover"
           />
         </div>
         <motion.div

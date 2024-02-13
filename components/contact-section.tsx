@@ -17,7 +17,7 @@ export default async function ContactSection({ items }: MenuItems) {
     <SectionContainer>
       <TypographyH2 className="tracking-[10px]">Contact</TypographyH2>
       <div className="mt-9 grid w-full grid-cols-1 gap-4 md:grid-cols-2">
-        <div className="flex flex-col justify-start gap-4">
+        <div className="flex flex-col justify-center gap-4">
           <TypographyH1>Got a problem to solve?</TypographyH1>
           <TypographyParagraph className="text-muted-foreground">
             I&apos;m always looking for new opportunities to work on exciting
@@ -26,7 +26,7 @@ export default async function ContactSection({ items }: MenuItems) {
           </TypographyParagraph>
           <SocialLinks items={items} />
         </div>
-        <div className="mx-auto w-full max-w-sm">
+        <div className="mx-auto w-full max-w-sm md:mx-0 md:justify-self-end">
           <ContactForm />
         </div>
       </div>

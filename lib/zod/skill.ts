@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const SkillSchema = z.object({
   _id: z.string(),
@@ -20,7 +20,10 @@ export function validateAndCleanupSkill(resource: any): Skill | null {
   try {
     return SkillSchema.parse(resource);
   } catch (error) {
-    const { name = 'ZodError', issues = [] } = error as { name?: string; issues?: any[] };
+    const { name = "ZodError", issues = [] } = error as {
+      name?: string;
+      issues?: any[];
+    };
     console.log(JSON.stringify({ name, issues, resource }, null, 2));
     return null;
   }
