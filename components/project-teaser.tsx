@@ -11,7 +11,7 @@ export default function ProjectTeaser({ project }: ProjectTeaserProps) {
   return (
     <Link
       href={"projects/" + project.slug.current}
-      className="group grid h-full rounded-3xl pb-3 transition-all hover:shadow-md hover:shadow-muted"
+      className="s group grid h-full rounded-3xl pb-3 shadow-md shadow-muted transition-all hover:shadow-xl"
     >
       {project.image && (
         <div className="mb-2 overflow-hidden rounded-t-xl">

@@ -8,6 +8,7 @@ import { createClient } from "@sanity/client";
 import { Menu, validateAndCleanupMenu } from "@/lib/zod/menu";
 import { Page, validateAndCleanupPage } from "@/lib/zod/page";
 
+import { Profile, validateAndCleanupProfile } from "@/lib/zod/profile";
 import { Project, validateAndCleanupProject } from "@/lib/zod/project";
 import { Skill, validateAndCleanupSkill } from "@/lib/zod/skill";
 import { apiVersion, dataset, projectId, token, useCdn } from "../env";
@@ -141,4 +142,26 @@ export async function getSkills() {
   );
 
   return validatedSkills;
+}
+
+export async function getProfile(): Promise<Profile> {
+  const query = `*[_type == "profile"][0] {
+    _id,
+    fullName,
+    headline,
+    image,
+    shortBio,
+    fullBio,
+    email,
+    location
+  }`;
+
+  const profile = await client.fetch(query);
+  const validatedProfile = validateAndCleanupProfile(profile);
+
+  if (!validatedProfile) {
+    throw new Error(`Profile not found`);
+  }
+
+  return validatedProfile;
 }

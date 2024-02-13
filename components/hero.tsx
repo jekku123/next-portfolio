@@ -3,8 +3,16 @@
 import { Variants, motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Hero() {
+interface HeroProps {
+  content: {
+    fullName: string;
+    headline: string;
+  };
+}
+
+export default function Hero({ content }: HeroProps) {
   const textVariants = {
     initial: {
       x: -500,
@@ -44,7 +52,7 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[calc(100vh-75px)]">
-      <div className="mx-auto grid h-full w-full max-w-6xl grid-cols-1 px-6 md:grid-cols-3">
+      <div className="mx-auto grid h-full w-full max-w-5xl grid-cols-1 px-6 md:grid-cols-3">
         <motion.div
           className="col-span-2 flex h-full flex-col justify-center gap-6 text-balance"
           variants={textVariants}
@@ -55,13 +63,13 @@ export default function Hero() {
             className="text-center text-xl tracking-[10px] text-primary md:text-left md:text-3xl"
             variants={textVariants}
           >
-            Jesse Manninen
+            {content.fullName}
           </motion.h2>
           <motion.h1
             className="scroll-m-20 text-center text-[2.5rem] font-bold tracking-tight sm:text-7xl md:text-left"
             variants={textVariants}
           >
-            Full-Stack Web Developer
+            {content.headline}
           </motion.h1>
 
           <motion.div
@@ -69,18 +77,22 @@ export default function Hero() {
             variants={textVariants}
           >
             <div className="flex gap-5">
-              <motion.button
-                className="cursor-pointer rounded-xl border border-solid bg-transparent px-5 py-3 font-light"
-                variants={textVariants}
-              >
-                About me
-              </motion.button>
-              <motion.button
-                className="cursor-pointer rounded-xl border border-solid bg-transparent px-5 py-3 font-light"
-                variants={textVariants}
-              >
-                Contact me
-              </motion.button>
+              <Link href="/about">
+                <motion.button
+                  className="cursor-pointer rounded-xl border border-solid bg-transparent px-5 py-3 font-light"
+                  variants={textVariants}
+                >
+                  About me
+                </motion.button>
+              </Link>
+              <Link href="/contact">
+                <motion.button
+                  className="cursor-pointer rounded-xl border border-solid bg-transparent px-5 py-3 font-light"
+                  variants={textVariants}
+                >
+                  Contact
+                </motion.button>
+              </Link>
             </div>
             <motion.div
               className="flex items-center justify-center"

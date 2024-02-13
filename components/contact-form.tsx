@@ -107,7 +107,7 @@ export function ContactForm() {
           className="group"
           disabled={isSubmitting}
         >
-          Submit
+          Send message
           <Forward className="ml-2 h-5 w-5 transition-transform duration-500 group-hover:translate-x-1" />
         </Button>
       </form>
