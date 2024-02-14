@@ -75,7 +75,6 @@ export async function getProjectBySlug(slug: string): Promise<Project> {
 
   const project = await client.fetch(query);
 
-  console.log("PROJECT: ", project);
   const validatedProject = validateAndCleanupProject(project);
 
   if (!validatedProject) {
