@@ -14,12 +14,12 @@ export default async function About() {
   const profile = await getProfile();
 
   return (
-    <div className="mx-auto mt-4 grid max-w-5xl ">
+    <div className="mx-auto mt-4 grid max-w-5xl">
       <div className="flex h-full min-h-[calc(100vh-140px)] w-full flex-col justify-center px-12 py-6 md:mt-0 md:px-6">
         <TypographyH2>About me</TypographyH2>
         <div className="mx-auto mt-9 grid grid-cols-1 md:grid-cols-3">
           <FormattedText
-            className="col-span-2 pb-5 pr-0 text-muted-foreground md:pb-0 md:pr-5"
+            className="col-span-2 pr-0 text-muted-foreground md:pr-5"
             content={profile.fullBio}
           />
           <div className="h-full w-full">

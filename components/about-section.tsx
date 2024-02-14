@@ -20,9 +20,9 @@ export default function AboutSection({ shortBio, skills }: AboutSectionProps) {
             <TypographyParagraph className="pr-0 md:pr-5">
               {shortBio}
             </TypographyParagraph>
-            <div className="mt-9 flex items-center gap-4">
+            <div className="mt-9 flex flex-col items-center gap-4 sm:flex-row">
               <TypographyH4>Top Skills</TypographyH4>
-              <div className="flex gap-6">
+              <div className="flex flex-wrap gap-6">
                 {skills.map((skill) => (
                   <Image
                     key={skill._id}
@@ -36,7 +36,7 @@ export default function AboutSection({ shortBio, skills }: AboutSectionProps) {
                 ))}
               </div>
             </div>
-            <div className="mt-9 flex">
+            <div className="sm: mt-9 flex justify-center sm:justify-start">
               <LinkButton href="/about" variant="secondary">
                 More about me
               </LinkButton>

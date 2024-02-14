@@ -22,7 +22,7 @@ export function TypographyH2({ children, className }: TypographyProps) {
   return (
     <h2
       className={cn(
-        "m scroll-m-20 border-b  pb-2 text-3xl font-semibold tracking-[10px] first:mt-0",
+        "scroll-m-20 border-b pb-2 text-center text-3xl font-semibold tracking-[10px] first:mt-0 sm:text-left",
         className,
       )}
     >

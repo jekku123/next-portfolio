@@ -7,7 +7,7 @@ import { getProfile, getProjectTeasers, getSkills } from "@/sanity/lib/client";
 export default async function Home() {
   const projects = await getProjectTeasers({ limit: 3 });
   const profile = await getProfile();
-  const skills = await getSkills({ limit: 5, order: "progress desc" });
+  const skills = await getSkills({ limit: 4, order: "progress desc" });
 
   const { fullName, headline, shortBio } = profile;
 
