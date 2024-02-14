@@ -59,7 +59,14 @@ export function TypographyH4({ children, className }: TypographyProps) {
 
 export function TypographyParagraph({ children, className }: TypographyProps) {
   return (
-    <p className={cn("mx-auto max-w-4xl leading-7", className)}>{children}</p>
+    <p
+      className={cn(
+        "mx-auto max-w-4xl leading-7 text-muted-foreground ",
+        className,
+      )}
+    >
+      {children}
+    </p>
   );
 }
 

@@ -72,15 +72,39 @@ export const projectSchema = defineType({
       ],
     },
     {
-      name: "technologies",
+      name: "carouselImages",
+      type: "array",
+      title: "Carousel Images",
+      of: [
+        {
+          name: "carouselImage",
+          type: "image",
+          title: "Carousel Image",
+          fields: [
+            {
+              name: "alt",
+              type: "string",
+              title: "Alt",
+              validation: (Rule) => Rule.required().error("Alt is required"),
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "techs",
       type: "array",
       title: "Technologies",
       of: [
         {
-          type: "reference",
-          to: [{ type: "skill" }],
+          name: "technology",
+          type: "string",
+          title: "Technology",
         },
       ],
+      options: {
+        layout: "tags",
+      },
     },
     {
       name: "tags",

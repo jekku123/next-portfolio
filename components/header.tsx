@@ -13,7 +13,7 @@ interface HeaderProps {
 
 export default function Header({ menu }: HeaderProps) {
   return (
-    <header className="top-0 z-50 w-full flex-shrink-0 backdrop-blur-lg md:sticky">
+    <header className="sticky top-0 z-50 w-full flex-shrink-0 backdrop-blur-lg">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <MobileMenu menu={menu} className="flex sm:hidden" />
         <Link href="/" className="z-50">

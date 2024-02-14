@@ -57,17 +57,34 @@ export const profileSchema = defineType({
       type: "string",
       title: "Location",
     },
-    // {
-    //   name: 'skills',
-    //   type: 'array',
-    //   title: 'Skills',
-    //   of: [
-    //     {
-    //       type: 'reference',
-    //       to: [{ type: 'skill' }],
-    //     },
-    //   ],
-    // },
+    {
+      name: "socialLinks",
+      title: "Social Links",
+      type: "array",
+      of: [
+        {
+          name: "socialLink",
+          type: "object",
+          title: "Social Link",
+          fields: [
+            {
+              name: "platform",
+              title: "Platform",
+              type: "string",
+            },
+            {
+              name: "url",
+              title: "Url",
+              type: "url",
+            },
+          ],
+        },
+      ],
+      options: {
+        layout: "tags",
+      },
+    },
+
     // {
     //   name: 'socialLinks',
     //   type: 'array',

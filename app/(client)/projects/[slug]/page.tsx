@@ -14,8 +14,6 @@ export default async function Project({
 }) {
   const project = await getProjectBySlug(params.slug);
 
-  const imageArray = [project.image];
-
   return (
     <div className="mx-auto flex min-h-[calc(100vh-140px)] max-w-5xl flex-col justify-center px-12 py-6 md:px-6">
       <TypographyH2>{project.title}</TypographyH2>
@@ -27,7 +25,7 @@ export default async function Project({
           />
         )}
 
-        <ProjectCarousel items={imageArray} />
+        <ProjectCarousel items={project.carouselImages} />
       </div>
       <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
         {project.github && (
@@ -45,8 +43,8 @@ export default async function Project({
         <div className="flex flex-col items-center gap-4 rounded-md border p-4">
           <TypographyH4>Technologies used</TypographyH4>
           <div className="flex gap-4">
-            {project.technologies.map((technology) => (
-              <Badge key={technology.title}>{technology.title}</Badge>
+            {project.techs.map((technology) => (
+              <Badge key={technology}>{technology}</Badge>
             ))}
           </div>
         </div>

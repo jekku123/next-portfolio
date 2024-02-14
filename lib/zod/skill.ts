@@ -3,16 +3,13 @@ import { z } from "zod";
 export const SkillSchema = z.object({
   _id: z.string(),
   title: z.string(),
-  logo: z
-    .object({
-      alt: z.string(),
-      asset: z.object({
-        _ref: z.string(),
-        _type: z.string(),
-      }),
-    })
-    .optional()
-    .nullable(),
+  logo: z.object({
+    alt: z.string(),
+    asset: z.object({
+      _ref: z.string(),
+      _type: z.string(),
+    }),
+  }),
   progress: z.number(),
 });
 

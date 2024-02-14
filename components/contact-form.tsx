@@ -45,14 +45,19 @@ export function ContactForm() {
   } = form;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const res = await createSubmission(values);
-
-    if (res) {
-      toast.success("Message sent!");
-      form.reset();
-    } else {
-      toast.error("Something went wrong.");
-    }
+    toast.promise(
+      async () => {
+        await createSubmission(values);
+      },
+      {
+        loading: "Sending...",
+        success: () => {
+          form.reset();
+          return `Message sent succesfully!`;
+        },
+        error: "Error sending message :(",
+      },
+    );
   }
 
   return (
@@ -106,6 +111,7 @@ export function ContactForm() {
           type="submit"
           className="group"
           disabled={isSubmitting}
+          aria-disabled={isSubmitting}
         >
           Send message
           <Forward className="ml-2 h-5 w-5 transition-transform duration-500 group-hover:translate-x-1" />

@@ -6,13 +6,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface HeroProps {
-  content: {
-    fullName: string;
-    headline: string;
-  };
+  fullName: string;
+  headline: string;
 }
 
-export default function Hero({ content }: HeroProps) {
+export default function Hero({ fullName, headline }: HeroProps) {
   const textVariants = {
     initial: {
       x: -500,
@@ -54,7 +52,7 @@ export default function Hero({ content }: HeroProps) {
     <section className="relative min-h-[calc(100vh-75px)]">
       <div className="mx-auto grid h-full w-full max-w-5xl grid-cols-1 px-6 md:grid-cols-3">
         <motion.div
-          className="col-span-2 flex h-full flex-col justify-center gap-6 text-balance"
+          className="col-span-2 flex h-full flex-col justify-center gap-4 text-balance sm:gap-6"
           variants={textVariants}
           initial="initial"
           animate="animate"
@@ -63,13 +61,13 @@ export default function Hero({ content }: HeroProps) {
             className="text-center text-xl tracking-[10px] text-primary md:text-left md:text-3xl"
             variants={textVariants}
           >
-            {content.fullName}
+            {fullName}
           </motion.h2>
           <motion.h1
             className="scroll-m-20 text-center text-[2.5rem] font-bold tracking-tight sm:text-7xl md:text-left"
             variants={textVariants}
           >
-            {content.headline}
+            {headline}
           </motion.h1>
 
           <motion.div
@@ -77,12 +75,12 @@ export default function Hero({ content }: HeroProps) {
             variants={textVariants}
           >
             <div className="flex gap-5">
-              <Link href="/about">
+              <Link href="/projects">
                 <motion.button
                   className="cursor-pointer rounded-xl border border-solid bg-transparent px-5 py-3 font-light"
                   variants={textVariants}
                 >
-                  About me
+                  Projects
                 </motion.button>
               </Link>
               <Link href="/contact">
@@ -110,7 +108,8 @@ export default function Hero({ content }: HeroProps) {
             alt="hero image"
             width={500}
             height={375}
-            className="aspect-square h-auto w-full max-w-[350px] rounded-full object-cover"
+            priority
+            className="aspect-square h-auto w-full max-w-[300px] rounded-full object-cover md:max-w-full"
           />
         </div>
         <motion.div

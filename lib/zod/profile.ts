@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { PortableTextSchema } from "./body";
 import { ImageSchema } from "./image";
+import { PortableTextSchema } from "./portable-text";
 
 const ProfileSchema = z.object({
   _id: z.string(),
@@ -11,6 +11,13 @@ const ProfileSchema = z.object({
   fullBio: PortableTextSchema,
   email: z.string(),
   location: z.string(),
+  socialLinks: z.array(
+    z.object({
+      _key: z.string(),
+      platform: z.string(),
+      url: z.string(),
+    }),
+  ),
 });
 
 export function validateAndCleanupProfile(resource: any): Profile | null {

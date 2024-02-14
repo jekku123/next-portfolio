@@ -6,7 +6,6 @@ import {
 import { createClient } from "@sanity/client";
 
 import { Menu, validateAndCleanupMenu } from "@/lib/zod/menu";
-import { Page, validateAndCleanupPage } from "@/lib/zod/page";
 
 import { Profile, validateAndCleanupProfile } from "@/lib/zod/profile";
 import { Project, validateAndCleanupProject } from "@/lib/zod/project";
@@ -48,7 +47,7 @@ export async function getProjectTeasers({
     excerpt,
     image,
     slug,
-    technologies[]->{_id, title},
+    techs[],
     tags[]
   }`;
 
@@ -69,11 +68,14 @@ export async function getProjectBySlug(slug: string): Promise<Project> {
     github,
     liveSite,
     image,
-    technologies[]->{_id, title},
-    tags[]
+    techs[],
+    tags[],
+    carouselImages[]
   }`;
 
   const project = await client.fetch(query);
+
+  console.log("PROJECT: ", project);
   const validatedProject = validateAndCleanupProject(project);
 
   if (!validatedProject) {
@@ -81,26 +83,6 @@ export async function getProjectBySlug(slug: string): Promise<Project> {
   }
 
   return validatedProject;
-}
-
-export async function getAboutPage(): Promise<Page> {
-  const query = `*[_type == "page" && slug.current == "about"][0]
-  {
-    _id,
-    title,
-    image,
-    slug,
-    body
-  }`;
-
-  const page = await client.fetch(query);
-  const validatedPage = validateAndCleanupPage(page);
-
-  if (!validatedPage) {
-    throw new Error(`Page not found`);
-  }
-
-  return validatedPage;
 }
 
 export async function getMenu(slug: string): Promise<Menu> {
@@ -128,8 +110,15 @@ export async function getMenu(slug: string): Promise<Menu> {
   return validatedMenu;
 }
 
-export async function getSkills() {
-  const query = `*[_type == "skill"] {
+export async function getSkills({
+  limit = null,
+  order = "progress desc",
+}: {
+  limit?: number | null;
+  order?: string;
+} = {}) {
+  const query = `*[_type == "skill"]${limit ? `|order(${order})[0...${limit}]` : ""} 
+  {
     _id,
     title,
     logo,
@@ -153,10 +142,13 @@ export async function getProfile(): Promise<Profile> {
     shortBio,
     fullBio,
     email,
-    location
+    location,
+    socialLinks,
+    skills,
   }`;
 
   const profile = await client.fetch(query);
+
   const validatedProfile = validateAndCleanupProfile(profile);
 
   if (!validatedProfile) {
