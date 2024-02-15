@@ -3,4 +3,4 @@
 Portfolio site built with Next.js, TypeScript and Tailwind CSS.
 Uses Sanity.io as a headless CMS.
 
-[Live site](https://next-portfolio-eta-five.vercel.app/)
+<!-- [Live site](https://next-portfolio-eta-five.vercel.app/) -->
