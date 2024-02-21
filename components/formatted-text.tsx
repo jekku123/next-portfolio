@@ -1,4 +1,5 @@
 import { PortableText } from "@portabletext/react";
+import Link from "next/link";
 import { PortableTextBlock } from "sanity";
 import {
   TypographyBlockquote,
@@ -32,6 +33,23 @@ export default async function FormattedText({
       blockquote: ({ children }: any) => (
         <TypographyBlockquote>{children}</TypographyBlockquote>
       ),
+    },
+    marks: {
+      link: ({ value, children }: { value?: any; children: any }) => {
+        const target = (value?.href || "").startsWith("http")
+          ? "_blank"
+          : undefined;
+        return (
+          <Link
+            href={value?.href}
+            target={target}
+            rel={target === "_blank" ? "noindex nofollow" : ""}
+            className="text-primary underline"
+          >
+            {children}
+          </Link>
+        );
+      },
     },
     list: {
       bullet: ({ children }: any) => (

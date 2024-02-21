@@ -64,7 +64,7 @@ export default function Hero({ fullName, headline }: HeroProps) {
             {fullName}
           </motion.h2>
           <motion.h1
-            className="scroll-m-20 text-center text-[2.5rem] font-bold tracking-tight sm:text-7xl md:text-left"
+            className="z-40 scroll-m-20 text-center text-[2.5rem] font-bold tracking-tight sm:text-7xl md:text-left"
             variants={textVariants}
           >
             {headline}
