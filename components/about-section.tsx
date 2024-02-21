@@ -14,7 +14,7 @@ export default function AboutSection({ shortBio, skills }: AboutSectionProps) {
   return (
     <SectionContainer>
       <div className="flex min-h-[calc(100vh-140px)] w-full flex-col justify-center">
-        <TypographyH2>Hello!</TypographyH2>
+        <TypographyH2>About me</TypographyH2>
         <div className="mt-9 grid grid-cols-1 md:grid-cols-3">
           <div className="col-span-2 flex flex-col justify-between">
             <TypographyParagraph className="pr-0 md:pr-5">

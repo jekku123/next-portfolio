@@ -11,13 +11,6 @@ const ProfileSchema = z.object({
   fullBio: PortableTextSchema,
   email: z.string(),
   location: z.string(),
-  socialLinks: z.array(
-    z.object({
-      _key: z.string(),
-      platform: z.string(),
-      url: z.string(),
-    }),
-  ),
 });
 
 export function validateAndCleanupProfile(resource: any): Profile | null {

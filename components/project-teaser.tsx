@@ -33,7 +33,7 @@ export default function ProjectTeaser({ project }: ProjectTeaserProps) {
             {project.tags.map((tag) => tag).join(", ")}
           </span>
         </div>
-        <h3 className="text-heading-xs mt-1 line-clamp-2 font-bold text-secondary-foreground underline-offset-2 group-hover:underline">
+        <h3 className="mt-1 line-clamp-2 text-xl font-bold text-secondary-foreground underline-offset-2 group-hover:underline">
           {project.title}
         </h3>
         <p className="mt-2 leading-5 text-muted-foreground">

@@ -40,7 +40,7 @@ export async function getProjectTeasers({
 }: {
   limit?: number | null;
 } = {}): Promise<ProjectTeaser[]> {
-  const query = `*[_type == "project"]${limit ? `[0...${limit}]` : ""}
+  const query = `*[_type == "project"]|order(_createdAt desc)${limit ? `[0...${limit}]` : ""}
   {
     _id,
     title,
@@ -142,8 +142,6 @@ export async function getProfile(): Promise<Profile> {
     fullBio,
     email,
     location,
-    socialLinks,
-    skills,
   }`;
 
   const profile = await client.fetch(query);

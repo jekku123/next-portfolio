@@ -16,7 +16,7 @@ export default async function Home() {
       <div className="grid gap-12 pb-12 md:gap-24">
         <Hero fullName={fullName} headline={headline} />
         <About shortBio={shortBio} skills={skills} />
-        <ProjectTeasers projects={projects} heading="Featured Projects" />
+        <ProjectTeasers projects={projects} heading="Latest Projects" />
       </div>
     </TracingBeam>
   );
