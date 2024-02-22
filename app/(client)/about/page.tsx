@@ -46,7 +46,7 @@ export default async function About() {
           </div>
         </div>
       </div>
-      <div className="flex min-h-[calc(100vh-140px)] w-full flex-col justify-center pb-12 md:mb-0">
+      <div className="flex min-h-[calc(100vh-140px)] w-full flex-col justify-center py-12 md:mb-0">
         <Skills skills={skills} />
       </div>
     </div>
