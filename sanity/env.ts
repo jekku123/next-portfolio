@@ -18,6 +18,21 @@ export const token = assertValue(
   "Missing environment variable: SANITY_TOKEN",
 );
 
+export const serviceId = assertValue(
+  process.env.SERVICE_ID || process.env.NEXT_PUBLIC_SERVICE_ID,
+  "Missing environment variable: SERVICE_ID",
+);
+
+export const templateId = assertValue(
+  process.env.TEMPLATE_ID || process.env.NEXT_PUBLIC_TEMPLATE_ID,
+  "Missing environment variable: TEMPLATE_ID",
+);
+
+export const publicKey = assertValue(
+  process.env.PUBLIC_KEY || process.env.NEXT_PUBLIC_PUBLIC_KEY,
+  "Missing environment variable: PUBLIC_KEY",
+);
+
 export const useCdn = false;
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {

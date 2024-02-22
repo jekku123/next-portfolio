@@ -10,9 +10,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { publicKey, serviceId, templateId } from "@/sanity/env";
 import { createSubmission } from "@/sanity/lib/client";
+import emailjs from "@emailjs/browser";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Forward } from "lucide-react";
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -40,6 +43,8 @@ export function ContactForm() {
     },
   });
 
+  const formRef = useRef<HTMLFormElement>(null);
+
   const {
     formState: { isSubmitting },
   } = form;
@@ -48,6 +53,9 @@ export function ContactForm() {
     toast.promise(
       async () => {
         await createSubmission(values);
+        await emailjs.sendForm(serviceId, templateId, formRef.current!, {
+          publicKey: publicKey,
+        });
       },
       {
         loading: "Sending...",
@@ -62,7 +70,11 @@ export function ContactForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form
+        ref={formRef}
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-6"
+      >
         <FormField
           control={form.control}
           name="name"
