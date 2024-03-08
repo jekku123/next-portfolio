@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { MenuItem } from "@/lib/zod/menu";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -16,10 +15,10 @@ const tabs = [
 
 interface NavTabsProps {
   className?: string;
-  menu: MenuItem[];
+  // menu: MenuItem[];
 }
 
-export function NavTabs({ className, menu }: NavTabsProps) {
+export function NavTabs({ className }: NavTabsProps) {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const pathname = usePathname();
   const pathOrigin = pathname.split("/")[1];

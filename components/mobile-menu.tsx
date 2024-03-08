@@ -40,10 +40,10 @@ const itemVariants = {
 
 interface MobileMenuProps {
   className?: string;
-  menu: MenuItem[];
+  // menu: MenuItem[];
 }
 
-export function MobileMenu({ className, menu }: MobileMenuProps) {
+export function MobileMenu({ className }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
 
   return (

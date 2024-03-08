@@ -36,7 +36,7 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex min-h-screen flex-col">
-            <Header menu={menus.main} />
+            <Header />
 
             <div className="flex grow flex-col overflow-hidden">
               <PageAnimatePresence>{children}</PageAnimatePresence>

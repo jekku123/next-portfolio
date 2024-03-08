@@ -12,9 +12,9 @@ export const linkSchema = defineType({
       hidden: ({ parent, value }) => !value && !!parent?.internal,
     },
     // {
-    //   name: 'internal',
-    //   type: 'reference',
-    //   to: [{ type: 'page' }],
+    //   name: "internal",
+    //   type: "reference",
+    //   to: [{ type: "page" }],
     //   hidden: ({ parent, value }) => !value && !!parent?.external,
     // },
   ],
