@@ -13,7 +13,7 @@ export function ProjectTeasers({ projects, heading }: ProjectTeaserProps) {
   return (
     <SectionContainer>
       <TypographyH2>{heading}</TypographyH2>
-      <ul className="mx-auto mt-9 grid max-w-5xl grid-cols-1 gap-9 sm:grid-cols-2 md:grid-cols-3">
+      <ul className="mx-auto mt-9 grid max-w-6xl grid-cols-1 gap-9 sm:grid-cols-2 md:grid-cols-3">
         {projects?.map((project) => (
           <li key={project._id}>
             <ProjectTeaser project={project} />

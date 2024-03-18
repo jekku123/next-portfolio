@@ -9,7 +9,7 @@ export default async function Projects() {
   const projects = await getProjectTeasers();
 
   return (
-    <div className="mx-auto flex min-h-[calc(100vh-140px)] max-w-5xl flex-col justify-center px-12 py-12 md:mt-0 md:px-6">
+    <div className="mx-auto flex min-h-[calc(100vh-140px)] max-w-6xl flex-col justify-center px-12 py-12 md:mt-0 md:px-6">
       <TypographyH2 className="text-center md:text-start">
         Projects
       </TypographyH2>

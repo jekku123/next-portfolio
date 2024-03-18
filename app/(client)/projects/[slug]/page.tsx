@@ -17,7 +17,7 @@ export default async function Project({
   const project = await getProjectBySlug(params.slug);
 
   return (
-    <div className="mx-auto flex min-h-[calc(100vh-140px)] max-w-5xl flex-col justify-center px-12 py-6 md:px-6">
+    <div className="mx-auto flex min-h-[calc(100vh-140px)] max-w-6xl flex-col justify-center px-12 py-6 md:px-6">
       <TypographyH2>{project.title}</TypographyH2>
       <div className="mt-9 flex flex-col gap-16 md:flex-row">
         {project.body && (

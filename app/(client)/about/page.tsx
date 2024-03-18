@@ -14,7 +14,7 @@ export default async function About() {
   const profile = await getProfile();
 
   return (
-    <div className="mx-auto mt-4 grid max-w-5xl">
+    <div className="mx-auto mt-4 grid max-w-6xl">
       <div className="flex h-full min-h-[calc(100vh-140px)] w-full flex-col justify-center px-12 py-6 md:mt-0 md:px-6">
         <TypographyH2>About me</TypographyH2>
         <div className="mx-auto mt-9 grid grid-cols-1 md:grid-cols-3">

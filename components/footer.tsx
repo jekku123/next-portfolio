@@ -9,7 +9,7 @@ interface FooterProps {
 export default function Footer({ menu }: FooterProps) {
   return (
     <footer className="w-full flex-shrink-0">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-2">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2">
         <TypographyMuted>JM Productions 2023</TypographyMuted>
         <ul className="flex gap-3">
           {menu?.map((link) => (

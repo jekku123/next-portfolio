@@ -11,7 +11,7 @@ export default function SectionContainer({
     <RevealInView>
       <section
         id={id}
-        className="relative mx-auto flex h-full w-full max-w-5xl scroll-m-20 flex-col justify-center px-12 py-4 md:px-6"
+        className="relative mx-auto flex h-full w-full max-w-6xl scroll-m-20 flex-col justify-center px-12 py-4 md:px-6"
       >
         {children}
       </section>
