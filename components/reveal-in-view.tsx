@@ -1,15 +1,24 @@
-'use client';
+"use client";
 
-import { cn } from '@/lib/utils';
-import { HTMLMotionProps, motion, useAnimation, useInView } from 'framer-motion';
+import { cn } from "@/lib/utils";
+import {
+  HTMLMotionProps,
+  motion,
+  useAnimation,
+  useInView,
+} from "framer-motion";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
-interface RevealInViewProps extends HTMLMotionProps<'div'> {
+interface RevealInViewProps extends HTMLMotionProps<"div"> {
   delay?: number;
 }
 
-export default function RevealInView({ children, className, delay = 0.25 }: RevealInViewProps) {
+export default function RevealInView({
+  children,
+  className,
+  delay = 0.25,
+}: RevealInViewProps) {
   const ref = useRef(null);
   const isInView = useInView(ref);
 
@@ -17,12 +26,13 @@ export default function RevealInView({ children, className, delay = 0.25 }: Reve
 
   useEffect(() => {
     if (isInView) {
-      mainControls.start('visible');
+      mainControls.start("visible");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInView]);
 
   return (
-    <div ref={ref} className={cn('w-100', className)}>
+    <div ref={ref} className={cn("w-100", className)}>
       <motion.div
         variants={{
           visible: { opacity: 1, y: 0 },
